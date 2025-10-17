@@ -21,9 +21,23 @@ views:
                 name: People Home
               - type: weather-forecast
                 entity: weather.home
+              - type: tile
+                entity: sensor.updates_available_count
+                name: Updates
+              - type: tile
+                entity: sensor.unavailable_entities_count
+                name: Unavailable
           - type: tile
             entity: climate.living_room
             name: Climate
+          - type: tile
+            entity: script.all_lights_off
+            name: All Lights Off
+            icon: mdi:lightbulb-off
+          - type: tile
+            entity: script.vacuum_return_to_base
+            name: Dock Vacuum
+            icon: mdi:robot-vacuum
           - type: tile
             entity: input_text.ai_camera_last_text
             name: Driveway Camera
