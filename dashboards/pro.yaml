@@ -88,9 +88,14 @@ views:
               navigation_path: /pro/tony_bedroom
       - type: grid
         cards:
-          - type: tile
-            entity: input_text.ai_camera_last_text
-            name: Driveway Camera
+          - type: conditional
+            conditions:
+              - entity: input_text.ai_camera_last_text
+                state_not: unavailable
+            card:
+              type: tile
+              entity: input_text.ai_camera_last_text
+              name: Driveway Camera
           - type: picture-entity
             entity: camera.ip_camera_profile_000
             name: Driveway Camera
@@ -98,47 +103,7 @@ views:
             image: /local/snapshots/ai_camera_latest.jpg
             camera_view: auto
 
-      - type: grid
-        cards:
-          - type: conditional
-            conditions:
-              - entity: media_player.samsung_6_series_55
-                state_not: off
-              - entity: media_player.samsung_6_series_55
-                state_not: idle
-              - entity: media_player.samsung_6_series_55
-                state_not: standby
-              - entity: media_player.samsung_6_series_55
-                state_not: unavailable
-            card:
-              type: media-control
-              entity: media_player.samsung_6_series_55
-          - type: conditional
-            conditions:
-              - entity: media_player.onn_4k_streaming_box
-                state_not: off
-              - entity: media_player.onn_4k_streaming_box
-                state_not: idle
-              - entity: media_player.onn_4k_streaming_box
-                state_not: standby
-              - entity: media_player.onn_4k_streaming_box
-                state_not: unavailable
-            card:
-              type: media-control
-              entity: media_player.onn_4k_streaming_box
-          - type: conditional
-            conditions:
-              - entity: media_player.spotify_ayorba_1986
-                state_not: off
-              - entity: media_player.spotify_ayorba_1986
-                state_not: idle
-              - entity: media_player.spotify_ayorba_1986
-                state_not: standby
-              - entity: media_player.spotify_ayorba_1986
-                state_not: unavailable
-            card:
-              type: media-control
-              entity: media_player.spotify_ayorba_1986
+      # Now Playing row removed for stability; can be re-added later with verified entities
 
   - title: Cameras
     icon: mdi:cctv
