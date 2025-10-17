@@ -51,6 +51,12 @@ views:
             tap_action:
               action: navigate
               navigation_path: /pro/emily_bedroom
+          - type: tile
+            name: Tony's Bedroom
+            icon: mdi:bed
+            tap_action:
+              action: navigate
+              navigation_path: /pro/tony_bedroom
       - type: grid
         cards:
           - type: tile
@@ -148,3 +154,18 @@ views:
           - type: tile
             entity: light.emily_bedroom_light
             name: Ceiling Light
+
+  - title: Tony's Bedroom
+    icon: mdi:bed
+    type: sections
+    path: tony_bedroom
+    subview: true
+    sections:
+      - type: grid
+        cards:
+          - type: entities
+            title: Tony's Bedroom
+            entities:
+              - entity: media_player.onn_4k_streaming_box
+              - entity: media_player.samsung_6_series_55
+              - entity: remote.samsung_6_series_55
