@@ -14,35 +14,36 @@
                                                         "type":  "grid",
                                                         "cards":  [
                                                                       {
-                                                                          "type":  "chips",
-                                                                          "chips":  [
+                                                                          "type":  "grid",
+                                                                          "cards":  [
                                                                                         {
-                                                                                            "type":  "template",
-                                                                                            "content":  "Doors/Windows: {{ states(\u0027sensor.open_doors_windows\u0027) }}"
+                                                                                            "type":  "tile",
+                                                                                            "entity":  "sensor.open_doors_windows",
+                                                                                            "name":  "Doors/Windows"
                                                                                         },
                                                                                         {
-                                                                                            "type":  "template",
-                                                                                            "content":  "Lights: {{ states(\u0027sensor.lights_on\u0027) }}"
+                                                                                            "type":  "tile",
+                                                                                            "entity":  "sensor.lights_on",
+                                                                                            "name":  "Lights On"
                                                                                         },
                                                                                         {
-                                                                                            "type":  "template",
-                                                                                            "content":  "People: {{ states(\u0027sensor.people_home\u0027) }}"
+                                                                                            "type":  "tile",
+                                                                                            "entity":  "sensor.people_home",
+                                                                                            "name":  "People Home"
                                                                                         },
                                                                                         {
-                                                                                            "type":  "weather",
+                                                                                            "type":  "weather-forecast",
                                                                                             "entity":  "weather.home"
                                                                                         },
                                                                                         {
-                                                                                            "type":  "entity",
-                                                                                            "entity":  "person.emily"
+                                                                                            "type":  "tile",
+                                                                                            "entity":  "sensor.updates_available_count",
+                                                                                            "name":  "Updates"
                                                                                         },
                                                                                         {
-                                                                                            "type":  "entity",
-                                                                                            "entity":  "person.chris"
-                                                                                        },
-                                                                                        {
-                                                                                            "type":  "entity",
-                                                                                            "entity":  "person.jolene"
+                                                                                            "type":  "tile",
+                                                                                            "entity":  "sensor.unavailable_entities_count",
+                                                                                            "name":  "Unavailable"
                                                                                         }
                                                                                     ]
                                                                       },
@@ -52,105 +53,17 @@
                                                                           "name":  "Climate"
                                                                       },
                                                                       {
-                                                                          "type":  "conditional",
-                                                                          "conditions":  [
-                                                                                             {
-                                                                                                 "entity":  "binary_sensor.presence",
-                                                                                                 "state_not":  "unavailable"
-                                                                                             }
-                                                                                         ],
-                                                                          "card":  {
-                                                                                       "type":  "tile",
-                                                                                       "entity":  "binary_sensor.presence",
-                                                                                       "name":  "Living Room Presence"
-                                                                                   }
+                                                                          "type":  "tile",
+                                                                          "entity":  "script.all_lights_off",
+                                                                          "name":  "All Lights Off",
+                                                                          "icon":  "mdi:lightbulb-off"
                                                                       },
                                                                       {
                                                                           "type":  "tile",
-                                                                          "name":  "Lights On",
-                                                                          "entity":  "sensor.lights_on",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/lights"
-                                                                                         }
+                                                                          "entity":  "script.vacuum_return_to_base",
+                                                                          "name":  "Dock Vacuum",
+                                                                          "icon":  "mdi:robot-vacuum"
                                                                       },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Cameras",
-                                                                          "icon":  "mdi:cctv",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/cameras"
-                                                                                         }
-                                                                      },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Driveway",
-                                                                          "icon":  "mdi:car-estate",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/driveway"
-                                                                                         }
-                                                                      },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Household",
-                                                                          "icon":  "mdi:home-account",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/household"
-                                                                                         }
-                                                                      },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Living Room",
-                                                                          "icon":  "mdi:sofa",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/living_room"
-                                                                                         }
-                                                                      },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Master Bedroom",
-                                                                          "icon":  "mdi:bed-king",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/master_bedroom"
-                                                                                         }
-                                                                      },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Chris Bedroom",
-                                                                          "icon":  "mdi:bed",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/chris_bedroom"
-                                                                                         }
-                                                                      },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Emily Bedroom",
-                                                                          "icon":  "mdi:bed",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/emily_bedroom"
-                                                                                         }
-                                                                      },
-                                                                      {
-                                                                          "type":  "tile",
-                                                                          "name":  "Tony\u0027s Bedroom",
-                                                                          "icon":  "mdi:bed",
-                                                                          "tap_action":  {
-                                                                                             "action":  "navigate",
-                                                                                             "navigation_path":  "/pro/tony_bedroom"
-                                                                                         }
-                                                                      }
-                                                                  ]
-                                                    },
-                                                    {
-                                                        "type":  "grid",
-                                                        "cards":  [
                                                                       {
                                                                           "type":  "tile",
                                                                           "entity":  "input_text.ai_camera_last_text",
@@ -163,6 +76,74 @@
                                                                           "show_state":  false,
                                                                           "image":  "/local/snapshots/ai_camera_latest.jpg",
                                                                           "camera_view":  "auto"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Household",
+                                                                          "icon":  "mdi:home-account",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/household"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Health",
+                                                                          "icon":  "mdi:heart-pulse",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/health"
+                                                                                         }
+                                                                      }
+                                                                  ]
+                                                    },
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "binary_sensor.presence",
+                                                                          "name":  "Living Presence"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.living_room_light_2",
+                                                                          "name":  "LR Light 2"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.master_bedroom_light",
+                                                                          "name":  "Master Light"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.chris_bedroom_light",
+                                                                          "name":  "Chris Light"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.emily_bedroom_light",
+                                                                          "name":  "Emily Light"
+                                                                      }
+                                                                  ]
+                                                    },
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "media_player.samsung_6_series_55",
+                                                                          "name":  "Samsung TV"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "media_player.onn_4k_streaming_box",
+                                                                          "name":  "Onn Box"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "media_player.spotify_ayorba_1986",
+                                                                          "name":  "Spotify"
                                                                       }
                                                                   ]
                                                     },
@@ -174,7 +155,7 @@
                                                                           "conditions":  [
                                                                                              {
                                                                                                  "entity":  "media_player.samsung_6_series_55",
-                                                                                                 "state_not":  false
+                                                                                                 "state_not":  "off"
                                                                                              },
                                                                                              {
                                                                                                  "entity":  "media_player.samsung_6_series_55",
@@ -199,7 +180,7 @@
                                                                           "conditions":  [
                                                                                              {
                                                                                                  "entity":  "media_player.onn_4k_streaming_box",
-                                                                                                 "state_not":  false
+                                                                                                 "state_not":  "off"
                                                                                              },
                                                                                              {
                                                                                                  "entity":  "media_player.onn_4k_streaming_box",
@@ -224,7 +205,7 @@
                                                                           "conditions":  [
                                                                                              {
                                                                                                  "entity":  "media_player.spotify_ayorba_1986",
-                                                                                                 "state_not":  false
+                                                                                                 "state_not":  "off"
                                                                                              },
                                                                                              {
                                                                                                  "entity":  "media_player.spotify_ayorba_1986",
@@ -648,29 +629,92 @@
                                                                                        ]
                                                                       },
                                                                       {
-                                                                          "type":  "custom:grocy-chores-card",
-                                                                          "title":  "Chores",
-                                                                          "entity":  [
-                                                                                         "sensor.grocy_chores",
-                                                                                         "sensor.grocy_tasks"
-                                                                                     ],
-                                                                          "show_quantity":  5,
-                                                                          "show_assigned":  true,
-                                                                          "show_overflow":  true,
-                                                                          "show_chores_without_due":  true,
-                                                                          "show_tasks_without_due":  true,
-                                                                          "use_icons":  true,
-                                                                          "use_long_date":  true,
-                                                                          "due_in_days_threshold":  7,
-                                                                          "use_24_hours":  true,
-                                                                          "hide_text_with_no_data":  true,
-                                                                          "filter_user":  4,
-                                                                          "done_by":  4
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "sensor.grocy_chores",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "custom:grocy-chores-card",
+                                                                                       "title":  "Chores",
+                                                                                       "entity":  [
+                                                                                                      "sensor.grocy_chores",
+                                                                                                      "sensor.grocy_tasks"
+                                                                                                  ],
+                                                                                       "show_quantity":  5,
+                                                                                       "show_assigned":  true,
+                                                                                       "show_overflow":  true,
+                                                                                       "show_chores_without_due":  true,
+                                                                                       "show_tasks_without_due":  true,
+                                                                                       "use_icons":  true,
+                                                                                       "use_long_date":  true,
+                                                                                       "due_in_days_threshold":  7,
+                                                                                       "use_24_hours":  true,
+                                                                                       "hide_text_with_no_data":  true,
+                                                                                       "filter_user":  4,
+                                                                                       "done_by":  4
+                                                                                   }
                                                                       },
                                                                       {
-                                                                          "type":  "todo-list",
-                                                                          "entity":  "todo.shopping_list",
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "todo.shopping_list",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "todo-list",
+                                                                                       "entity":  "todo.shopping_list"
+                                                                                   },
                                                                           "title":  "Shopping List"
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Health",
+                                   "icon":  "mdi:heart-pulse",
+                                   "type":  "sections",
+                                   "path":  "health",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "entities",
+                                                                          "title":  "Core Snapshot",
+                                                                          "entities":  [
+                                                                                           "sensor.open_doors_windows",
+                                                                                           "sensor.lights_on",
+                                                                                           "weather.home"
+                                                                                       ]
+                                                                      },
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "binary_sensor.zigbee2mqtt_bridge_connection_state",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "entities",
+                                                                                       "title":  "Zigbee2MQTT",
+                                                                                       "entities":  [
+                                                                                                        "binary_sensor.zigbee2mqtt_bridge_connection_state",
+                                                                                                        "binary_sensor.zigbee2mqtt_bridge_restart_required",
+                                                                                                        "switch.zigbee2mqtt_bridge_permit_join"
+                                                                                                    ]
+                                                                                   }
+                                                                      },
+                                                                      {
+                                                                          "type":  "markdown",
+                                                                          "content":  "### System Docs\n- [Add-ons Summary](/local/docs/addons.md)\n- [Integrations Summary](/local/docs/integrations.md)\n"
                                                                       }
                                                                   ]
                                                     }

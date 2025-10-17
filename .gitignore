@@ -4,7 +4,6 @@ home-assistant_v2.db-*
 *.log
 *.sqlite*
 .storage/
-!.storage/
 .cloud/
 tts/
 deps/
@@ -40,3 +39,4 @@ zigbee2mqtt/logs/
 !.storage/lovelace.*
 !.storage/lovelace_resources
 .storage/lovelace.map
+
