@@ -99,6 +99,13 @@ lovelace:
       type: module
     - url: /hacsfiles/fold-entity-row/fold-entity-row.js
       type: module
+  dashboards:
+    pro-dashboard:
+      mode: yaml
+      filename: dashboards/pro.yaml
+      title: Pro
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
     - url: /hacsfiles/lovelace-layout-card/layout-card.js
       type: module
   dashboards:
