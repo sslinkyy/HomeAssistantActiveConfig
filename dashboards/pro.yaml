@@ -23,19 +23,19 @@ views:
                 entity: weather.home
               - type: conditional
                 conditions:
-                  - entity: sensor.updates_available_count
+                  - entity: sensor.updates_available
                     state_not: unavailable
                 card:
                   type: tile
-                  entity: sensor.updates_available_count
+                  entity: sensor.updates_available
                   name: Updates
               - type: conditional
                 conditions:
-                  - entity: sensor.unavailable_entities_count
+                  - entity: sensor.unavailable_entities
                     state_not: unavailable
                 card:
                   type: tile
-                  entity: sensor.unavailable_entities_count
+                  entity: sensor.unavailable_entities
                   name: Unavailable
           - type: tile
             entity: climate.living_room
@@ -518,5 +518,6 @@ views:
           - type: tile
             entity: light.0xa4c138e358edf3d8
             name: Ceiling Light
+
 
 
