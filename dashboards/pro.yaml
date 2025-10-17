@@ -100,6 +100,7 @@ views:
               - light.master_bedroom_light
               - light.chris_bedroom_light
               - light.emily_bedroom_light
+              - light.0xa4c138e358edf3d8
 
   - title: Climate
     icon: mdi:thermostat
@@ -114,6 +115,19 @@ views:
             name: Living Room
           - type: weather-forecast
             entity: weather.home
+          - type: custom:weather-chart-card
+            entity: weather.home
+            show_main: true
+            show_temperature: true
+            show_current_condition: true
+            show_humidity: true
+            show_pressure: true
+            show_wind_direction: true
+            show_wind_speed: true
+            show_sun: true
+            show_time: false
+            show_date: false
+            use_12hour_format: false
           - type: history-graph
             hours_to_show: 8
             entities:
@@ -163,9 +177,15 @@ views:
     sections:
       - type: grid
         cards:
-          - type: entities
-            title: Tony's Bedroom
-            entities:
-              - entity: media_player.onn_4k_streaming_box
-              - entity: media_player.samsung_6_series_55
-              - entity: remote.samsung_6_series_55
+          - type: media-control
+            entity: media_player.onn_4k_streaming_box
+          - type: media-control
+            entity: media_player.samsung_6_series_55
+          - type: tile
+            entity: remote.samsung_6_series_55
+            name: TV Remote
+          - type: media-control
+            entity: media_player.spotify_ayorba_1986
+          - type: tile
+            entity: light.0xa4c138e358edf3d8
+            name: Ceiling Light
