@@ -1,0 +1,21 @@
+template:
+  - sensor:
+      - name: Lights On
+        unique_id: lights_on
+        state: >-
+          {{ expand(states.light)
+             | selectattr('state','eq','on')
+             | list | count }}
+      - name: Open Doors Windows
+        unique_id: open_doors_windows
+        state: >-
+          {{ expand(states.binary_sensor)
+             | selectattr('attributes.device_class','in',['door','window'])
+             | selectattr('state','eq','on')
+             | list | count }}
+      - name: People Home
+        unique_id: people_home
+        state: >-
+          {{ expand(states.person)
+             | selectattr('state','eq','home')
+             | list | count }}

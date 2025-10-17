@@ -86,3 +86,13 @@ input_text:
   ai_prefix:
     name: AI Prefix
     max: 255
+
+lovelace:
+  dashboards:
+    pro-dashboard:
+      mode: yaml
+      filename: dashboards/pro.yaml
+      title: Pro
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
+
