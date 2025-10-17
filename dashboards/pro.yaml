@@ -21,6 +21,14 @@ views:
           - type: tile
             entity: climate.living_room
             name: Climate
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.presence_occupancy
+                state_not: unavailable
+            card:
+              type: tile
+              entity: binary_sensor.presence_occupancy
+              name: Living Room Presence
           - type: tile
             name: Lights On
             entity: sensor.lights_on
