@@ -21,12 +21,22 @@ views:
                 name: People Home
               - type: weather-forecast
                 entity: weather.home
-              - type: tile
-                entity: sensor.updates_available_count
-                name: Updates
-              - type: tile
-                entity: sensor.unavailable_entities_count
-                name: Unavailable
+              - type: conditional
+                conditions:
+                  - entity: sensor.updates_available_count
+                    state_not: unavailable
+                card:
+                  type: tile
+                  entity: sensor.updates_available_count
+                  name: Updates
+              - type: conditional
+                conditions:
+                  - entity: sensor.unavailable_entities_count
+                    state_not: unavailable
+                card:
+                  type: tile
+                  entity: sensor.unavailable_entities_count
+                  name: Unavailable
           - type: tile
             entity: climate.living_room
             name: Climate
@@ -508,4 +518,5 @@ views:
           - type: tile
             entity: light.0xa4c138e358edf3d8
             name: Ceiling Light
+
 
