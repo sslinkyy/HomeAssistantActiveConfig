@@ -3,33 +3,33 @@ template:
       - name: Lights On
         unique_id: lights_on
         state: >-
-          {{ expand(states.light)
+          {{ states.light
              | selectattr('state','eq','on')
              | list | count }}
       - name: Open Doors Windows
         unique_id: open_doors_windows
         state: >-
-          {{ expand(states.binary_sensor)
+          {{ states.binary_sensor
              | selectattr('attributes.device_class','in',['door','window'])
              | selectattr('state','eq','on')
              | list | count }}
       - name: People Home
         unique_id: people_home
         state: >-
-          {{ expand(states.person)
+          {{ states.person
              | selectattr('state','eq','home')
              | list | count }}
       - name: Updates Available
         unique_id: updates_available_count
         state: >-
-          {{ expand(states.update) | selectattr('state','eq','on') | list | count }}
+          {{ states.update | selectattr('state','eq','on') | list | count }}
       - name: Unavailable Entities
         unique_id: unavailable_entities_count
         state: >-
-          {{ expand(states) | selectattr('state','eq','unavailable') | list | count }}
+          {{ states | selectattr('state','eq','unavailable') | list | count }}
       - name: Active Media Players
         unique_id: active_media_players
         state: >-
-          {{ expand(states.media_player)
+          {{ states.media_player
              | selectattr('state','in',['playing','buffering','paused'])
              | list | count }}
