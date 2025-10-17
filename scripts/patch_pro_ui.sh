@@ -19,7 +19,15 @@ backup="$FILE.bak.$(date +%Y%m%d-%H%M%S)"
 cp -f "$FILE" "$backup"
 echo "Backup saved: $backup"
 
-jq ' 
+jq '
+  # --- helpers ---
+  def ensure_grid_section: {type:"grid", cards: []};
+
+  def pad_sections($n):
+    ( .sections |= ( . // [] ) )
+    | if (.sections|length) >= $n then .
+      else ( .sections += [ ensure_grid_section ] ) | pad_sections($n) end;
+
   # helper to ensure Health view exists later
   def health_view: {
     title: "Health",
@@ -44,32 +52,42 @@ jq '
     ]
   };
 
-  # Modify views in-place
+  # --- modify views in-place ---
   (.data.views) |= ( map(
     if .title == "Home" then
+      # Ensure we have at least 3 sections
+      ( pad_sections(3) )
+      |
       # Section 2: add Household/Health nav tiles
-      ( .sections[1].cards |= ( . + [
+      ( .sections[1].cards |= ( (. // []) + [
         {type:"tile", name:"Household", icon:"mdi:home-account", tap_action:{action:"navigate", navigation_path:"/pro/household"}},
         {type:"tile", name:"Health", icon:"mdi:heart-pulse", tap_action:{action:"navigate", navigation_path:"/pro/health"}}
       ] | unique_by(.name? // .entity?)))
       |
-      # Section 3: add counters to nested grid, add quick actions after climate
+      # Section 3: counters + quick actions (robust)
       ( .sections[2] |= (
-          . as $sec
-          | (
-              ( .cards | map(select(.type=="grid" and (.cards|type=="array"))) | .[0] ) as $nested
-              | if ($nested|type)=="object" then
-                  ( .cards |= ( . + [
-                    {type:"tile", entity:"sensor.updates_available_count", name:"Updates"},
-                    {type:"tile", entity:"sensor.unavailable_entities_count", name:"Unavailable"}
-                  ] | unique_by(.name? // .entity?)))
-                else . end
-            )
-          | ( .cards |= ( . + [
+          .cards |= ( (. // []) )
+          |
+          # Try to locate a nested grid; if none, just push tiles into this section
+          ( if ( any(.cards[]?; (.type=="grid" and (.cards|type=="array"))) ) then
+              ( .cards |= ( map( if (.type=="grid" and (.cards|type=="array")) then
+                                   ( .cards |= ( (. + [
+                                       {type:"tile", entity:"sensor.updates_available_count", name:"Updates"},
+                                       {type:"tile", entity:"sensor.unavailable_entities_count", name:"Unavailable"}
+                                     ]) | unique_by(.name? // .entity?) ) )
+                                   else . end )) )
+            else
+              ( .cards |= ( (. + [
+                 {type:"tile", entity:"sensor.updates_available_count", name:"Updates"},
+                 {type:"tile", entity:"sensor.unavailable_entities_count", name:"Unavailable"}
+               ]) | unique_by(.name? // .entity?) ) )
+            end )
+          |
+          ( .cards |= ( (. + [
                 {type:"tile", entity:"script.all_lights_off", name:"All Lights Off", icon:"mdi:lightbulb-off"},
                 {type:"tile", entity:"script.vacuum_return_to_base", name:"Dock Vacuum", icon:"mdi:robot-vacuum"}
-              ] | unique_by(.name? // .entity?)))
-        ))
+              ]) | unique_by(.name? // .entity?) ) )
+        ) )
       |
       # Add Now Playing row as new section
       ( .sections += [ { type:"grid", cards: [
@@ -111,7 +129,11 @@ jq '
   ( if (.data.views | any(.title=="Health")) then . else
       .data.views += [ health_view ]
     end )
-' "$FILE" > "$FILE.tmp"
+' "$FILE" > "$FILE.tmp" || {
+  echo "jq failed; restoring backup" >&2
+  cp -f "$backup" "$FILE"
+  exit 1
+}
 
 mv "$FILE.tmp" "$FILE"
 echo "Patched: $FILE"
@@ -123,4 +145,3 @@ if [[ -f "/config/docs/integrations.md" ]]; then cp -f /config/docs/integrations
 echo "Docs copied to /config/www/docs (accessible as /local/docs/...)."
 
 echo "Done. Reload dashboards (Developer Tools → YAML) and hard refresh the browser."
-
