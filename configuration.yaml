@@ -86,19 +86,8 @@ input_text:
   ai_prefix:
     name: AI Prefix
     max: 255
-  ai_camera_last_text:
-    name: AI Camera Last Text
-    max: 255
-  ai_camera_last_image:
-    name: AI Camera Last Image
-    max: 255
 
 lovelace:
-  resources:
-    - url: /hacsfiles/auto-entities/auto-entities.js
-      type: module
-    - url: /hacsfiles/fold-entity-row/fold-entity-row.js
-      type: module
   dashboards:
     pro-dashboard:
       mode: yaml
@@ -106,13 +95,9 @@ lovelace:
       title: Pro
       icon: mdi:view-dashboard
       show_in_sidebar: true
-    - url: /hacsfiles/lovelace-layout-card/layout-card.js
-      type: module
-  dashboards:
-    pro-dashboard:
-      mode: yaml
-      filename: dashboards/pro.yaml
-      title: Pro
-      icon: mdi:view-dashboard
-      show_in_sidebar: true
-
+# Debug/version sensor (reads last line of /config/.dashboard_version)
+sensor:
+  - platform: file
+    name: Dashboard Version
+    file_path: /config/.dashboard_version
+    value_template: '{{ value | trim }}'

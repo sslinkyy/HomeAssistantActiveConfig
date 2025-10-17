@@ -19,8 +19,10 @@ views:
               - type: tile
                 entity: sensor.people_home
                 name: People Home
-              - type: weather-forecast
-                entity: weather.home
+              
+              - type: tile
+                entity: sensor.dashboard_version
+                name: Pro Ver
               - type: conditional
                 conditions:
                   - entity: sensor.updates_available
@@ -170,8 +172,10 @@ views:
           - type: tile
             entity: climate.living_room
             name: Living Room
-          - type: weather-forecast
-            entity: weather.home
+          
+              - type: tile
+                entity: sensor.dashboard_version
+                name: Pro Ver
           - type: custom:weather-chart-card
             entity: weather.home
             show_main: true
@@ -518,6 +522,7 @@ views:
           - type: tile
             entity: light.0xa4c138e358edf3d8
             name: Ceiling Light
+
 
 
 
