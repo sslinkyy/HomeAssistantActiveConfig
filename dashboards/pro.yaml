@@ -169,6 +169,25 @@ views:
               - light.emily_bedroom_light
               - light.0xa4c138e358edf3d8
               - light.master_bathroom_light
+      - type: grid
+        cards:
+          - type: entities
+            title: All Lights (folded)
+            entities:
+              - type: custom:fold-entity-row
+                head:
+                  type: section
+                  label: Show all lights
+                entities:
+                  - light.living_room_light_2
+                  - light.master_bedroom_light
+                  - light.chris_bedroom_light
+                  - light.emily_bedroom_light
+                  - light.0xa4c138e358edf3d8
+                  - light.master_bathroom_light
+                  - light.spare_room_light
+                  - light.front_porch_light
+                  - light.0xa4c1384c438aa25c
 
   - title: Climate
     icon: mdi:thermostat
@@ -434,6 +453,51 @@ views:
               entity: todo.shopping_list
             title: Shopping List
 
+  - title: Dynamic
+    icon: mdi:lightning-bolt
+    type: sections
+    path: dynamic
+    subview: true
+    sections:
+      - type: grid
+        cards:
+          - type: custom:auto-entities
+            card:
+              type: entities
+              title: Lights On
+            filter:
+              include:
+                - domain: light
+                  state: 'on'
+            sort:
+              method: attribute
+              attribute: brightness
+              reverse: true
+            show_empty: false
+          - type: custom:auto-entities
+            card:
+              type: entities
+              title: Active Media
+            filter:
+              include:
+                - domain: media_player
+                  state: playing
+                - domain: media_player
+                  state: paused
+            show_empty: false
+          - type: custom:auto-entities
+            card:
+              type: entities
+              title: Recently Changed
+            filter:
+              include:
+                - domain: light
+                - domain: switch
+                - domain: climate
+            sort:
+              method: last_changed
+              reverse: true
+            show_empty: false
   - title: Health
     icon: mdi:heart-pulse
     type: sections

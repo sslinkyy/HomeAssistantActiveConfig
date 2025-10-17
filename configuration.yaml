@@ -94,6 +94,13 @@ input_text:
     max: 255
 
 lovelace:
+  resources:
+    - url: /hacsfiles/auto-entities/auto-entities.js
+      type: module
+    - url: /hacsfiles/fold-entity-row/fold-entity-row.js
+      type: module
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
   dashboards:
     pro-dashboard:
       mode: yaml
