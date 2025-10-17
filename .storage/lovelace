@@ -1,0 +1,719 @@
+﻿{
+    "key":  "lovelace.",
+    "data":  {
+                 "title":  "Pro",
+                 "views":  [
+                               {
+                                   "title":  "Home",
+                                   "icon":  "mdi:home",
+                                   "type":  "sections",
+                                   "path":  "home",
+                                   "subview":  false,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "chips",
+                                                                          "chips":  [
+                                                                                        {
+                                                                                            "type":  "template",
+                                                                                            "content":  "Doors/Windows: {{ states(\u0027sensor.open_doors_windows\u0027) }}"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "template",
+                                                                                            "content":  "Lights: {{ states(\u0027sensor.lights_on\u0027) }}"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "template",
+                                                                                            "content":  "People: {{ states(\u0027sensor.people_home\u0027) }}"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "weather",
+                                                                                            "entity":  "weather.home"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "entity",
+                                                                                            "entity":  "person.emily"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "entity",
+                                                                                            "entity":  "person.chris"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "entity",
+                                                                                            "entity":  "person.jolene"
+                                                                                        }
+                                                                                    ]
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "climate.living_room",
+                                                                          "name":  "Climate"
+                                                                      },
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "binary_sensor.presence",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "tile",
+                                                                                       "entity":  "binary_sensor.presence",
+                                                                                       "name":  "Living Room Presence"
+                                                                                   }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Lights On",
+                                                                          "entity":  "sensor.lights_on",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/lights"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Cameras",
+                                                                          "icon":  "mdi:cctv",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/cameras"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Driveway",
+                                                                          "icon":  "mdi:car-estate",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/driveway"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Household",
+                                                                          "icon":  "mdi:home-account",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/household"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Living Room",
+                                                                          "icon":  "mdi:sofa",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/living_room"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Master Bedroom",
+                                                                          "icon":  "mdi:bed-king",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/master_bedroom"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Chris Bedroom",
+                                                                          "icon":  "mdi:bed",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/chris_bedroom"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Emily Bedroom",
+                                                                          "icon":  "mdi:bed",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/emily_bedroom"
+                                                                                         }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "name":  "Tony\u0027s Bedroom",
+                                                                          "icon":  "mdi:bed",
+                                                                          "tap_action":  {
+                                                                                             "action":  "navigate",
+                                                                                             "navigation_path":  "/pro/tony_bedroom"
+                                                                                         }
+                                                                      }
+                                                                  ]
+                                                    },
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "input_text.ai_camera_last_text",
+                                                                          "name":  "Driveway Camera"
+                                                                      },
+                                                                      {
+                                                                          "type":  "picture-entity",
+                                                                          "entity":  "camera.ip_camera_profile_000",
+                                                                          "name":  "Driveway Camera",
+                                                                          "show_state":  false,
+                                                                          "image":  "/local/snapshots/ai_camera_latest.jpg",
+                                                                          "camera_view":  "auto"
+                                                                      }
+                                                                  ]
+                                                    },
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "media_player.samsung_6_series_55",
+                                                                                                 "state_not":  false
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.samsung_6_series_55",
+                                                                                                 "state_not":  "idle"
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.samsung_6_series_55",
+                                                                                                 "state_not":  "standby"
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.samsung_6_series_55",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "media-control",
+                                                                                       "entity":  "media_player.samsung_6_series_55"
+                                                                                   }
+                                                                      },
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "media_player.onn_4k_streaming_box",
+                                                                                                 "state_not":  false
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.onn_4k_streaming_box",
+                                                                                                 "state_not":  "idle"
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.onn_4k_streaming_box",
+                                                                                                 "state_not":  "standby"
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.onn_4k_streaming_box",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "media-control",
+                                                                                       "entity":  "media_player.onn_4k_streaming_box"
+                                                                                   }
+                                                                      },
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "media_player.spotify_ayorba_1986",
+                                                                                                 "state_not":  false
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.spotify_ayorba_1986",
+                                                                                                 "state_not":  "idle"
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.spotify_ayorba_1986",
+                                                                                                 "state_not":  "standby"
+                                                                                             },
+                                                                                             {
+                                                                                                 "entity":  "media_player.spotify_ayorba_1986",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "media-control",
+                                                                                       "entity":  "media_player.spotify_ayorba_1986"
+                                                                                   }
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Cameras",
+                                   "icon":  "mdi:cctv",
+                                   "type":  "sections",
+                                   "path":  "cameras",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "picture-entity",
+                                                                          "entity":  "camera.ip_camera_profile_000",
+                                                                          "name":  "Driveway Camera",
+                                                                          "camera_view":  "live",
+                                                                          "show_state":  false,
+                                                                          "tap_action":  "more-info"
+                                                                      },
+                                                                      {
+                                                                          "type":  "picture",
+                                                                          "image":  "/local/snapshots/ai_camera_latest.jpg",
+                                                                          "tap_action":  {
+                                                                                             "action":  "none"
+                                                                                         }
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Lights",
+                                   "icon":  "mdi:lightbulb-group",
+                                   "type":  "sections",
+                                   "path":  "lights",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "entities",
+                                                                          "title":  "Quick Lights",
+                                                                          "entities":  [
+                                                                                           "light.living_room_light_2",
+                                                                                           "light.master_bedroom_light",
+                                                                                           "light.chris_bedroom_light",
+                                                                                           "light.emily_bedroom_light",
+                                                                                           "light.0xa4c138e358edf3d8",
+                                                                                           "light.master_bathroom_light"
+                                                                                       ]
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Climate",
+                                   "icon":  "mdi:thermostat",
+                                   "type":  "sections",
+                                   "path":  "climate",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "climate.living_room",
+                                                                          "name":  "Living Room"
+                                                                      },
+                                                                      {
+                                                                          "type":  "weather-forecast",
+                                                                          "entity":  "weather.home"
+                                                                      },
+                                                                      {
+                                                                          "type":  "custom:weather-chart-card",
+                                                                          "entity":  "weather.home",
+                                                                          "show_main":  true,
+                                                                          "show_temperature":  true,
+                                                                          "show_current_condition":  true,
+                                                                          "show_humidity":  true,
+                                                                          "show_pressure":  true,
+                                                                          "show_wind_direction":  true,
+                                                                          "show_wind_speed":  true,
+                                                                          "show_sun":  true,
+                                                                          "show_time":  false,
+                                                                          "show_date":  false,
+                                                                          "use_12hour_format":  false
+                                                                      },
+                                                                      {
+                                                                          "type":  "history-graph",
+                                                                          "hours_to_show":  8,
+                                                                          "entities":  [
+                                                                                           {
+                                                                                               "entity":  "climate.living_room"
+                                                                                           }
+                                                                                       ]
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Master Bedroom",
+                                   "icon":  "mdi:bed-king",
+                                   "type":  "sections",
+                                   "path":  "master_bedroom",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.master_bedroom_light",
+                                                                          "name":  "Ceiling Light"
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Chris Bedroom",
+                                   "icon":  "mdi:bed",
+                                   "type":  "sections",
+                                   "path":  "chris_bedroom",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.chris_bedroom_light",
+                                                                          "name":  "Ceiling Light"
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Emily Bedroom",
+                                   "icon":  "mdi:bed",
+                                   "type":  "sections",
+                                   "path":  "emily_bedroom",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.emily_bedroom_light",
+                                                                          "name":  "Ceiling Light"
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Living Room",
+                                   "icon":  "mdi:sofa",
+                                   "type":  "sections",
+                                   "path":  "living_room",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "light.living_room_light_1",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "tile",
+                                                                                       "entity":  "light.living_room_light_1",
+                                                                                       "name":  "Ceiling Light 1"
+                                                                                   }
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.living_room_light_2",
+                                                                          "name":  "Ceiling Light 2"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "binary_sensor.presence",
+                                                                          "name":  "Presence"
+                                                                      },
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "number.presence_sensitivity",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "tile",
+                                                                                       "entity":  "number.presence_sensitivity",
+                                                                                       "name":  "Presence Sensitivity"
+                                                                                   }
+                                                                      },
+                                                                      {
+                                                                          "type":  "conditional",
+                                                                          "conditions":  [
+                                                                                             {
+                                                                                                 "entity":  "number.presence_timeout",
+                                                                                                 "state_not":  "unavailable"
+                                                                                             }
+                                                                                         ],
+                                                                          "card":  {
+                                                                                       "type":  "tile",
+                                                                                       "entity":  "number.presence_timeout",
+                                                                                       "name":  "Presence Timeout"
+                                                                                   }
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Driveway",
+                                   "icon":  "mdi:car-estate",
+                                   "type":  "sections",
+                                   "path":  "driveway",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "picture-entity",
+                                                                          "entity":  "camera.ip_camera_profile_000",
+                                                                          "name":  "Driveway Camera",
+                                                                          "camera_view":  "live",
+                                                                          "show_state":  false,
+                                                                          "tap_action":  "more-info"
+                                                                      },
+                                                                      {
+                                                                          "type":  "grid",
+                                                                          "cards":  [
+                                                                                        {
+                                                                                            "type":  "button",
+                                                                                            "name":  "Left",
+                                                                                            "icon":  "mdi:arrow-left",
+                                                                                            "tap_action":  {
+                                                                                                               "action":  "call-service",
+                                                                                                               "service":  "onvif.ptz",
+                                                                                                               "data":  {
+                                                                                                                            "entity_id":  "camera.ip_camera_profile_000",
+                                                                                                                            "profile":  "PROFILE_000",
+                                                                                                                            "move_mode":  "RelativeMove",
+                                                                                                                            "pan":  -0.2,
+                                                                                                                            "tilt":  0,
+                                                                                                                            "zoom":  0,
+                                                                                                                            "speed":  0.5
+                                                                                                                        }
+                                                                                                           }
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "button",
+                                                                                            "name":  "Right",
+                                                                                            "icon":  "mdi:arrow-right",
+                                                                                            "tap_action":  {
+                                                                                                               "action":  "call-service",
+                                                                                                               "service":  "onvif.ptz",
+                                                                                                               "data":  {
+                                                                                                                            "entity_id":  "camera.ip_camera_profile_000",
+                                                                                                                            "profile":  "PROFILE_000",
+                                                                                                                            "move_mode":  "RelativeMove",
+                                                                                                                            "pan":  0.2,
+                                                                                                                            "tilt":  0,
+                                                                                                                            "zoom":  0,
+                                                                                                                            "speed":  0.5
+                                                                                                                        }
+                                                                                                           }
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "button",
+                                                                                            "name":  "Up",
+                                                                                            "icon":  "mdi:arrow-up",
+                                                                                            "tap_action":  {
+                                                                                                               "action":  "call-service",
+                                                                                                               "service":  "onvif.ptz",
+                                                                                                               "data":  {
+                                                                                                                            "entity_id":  "camera.ip_camera_profile_000",
+                                                                                                                            "profile":  "PROFILE_000",
+                                                                                                                            "move_mode":  "RelativeMove",
+                                                                                                                            "pan":  0,
+                                                                                                                            "tilt":  0.15,
+                                                                                                                            "zoom":  0,
+                                                                                                                            "speed":  0.5
+                                                                                                                        }
+                                                                                                           }
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "button",
+                                                                                            "name":  "Down",
+                                                                                            "icon":  "mdi:arrow-down",
+                                                                                            "tap_action":  {
+                                                                                                               "action":  "call-service",
+                                                                                                               "service":  "onvif.ptz",
+                                                                                                               "data":  {
+                                                                                                                            "entity_id":  "camera.ip_camera_profile_000",
+                                                                                                                            "profile":  "PROFILE_000",
+                                                                                                                            "move_mode":  "RelativeMove",
+                                                                                                                            "pan":  0,
+                                                                                                                            "tilt":  -0.15,
+                                                                                                                            "zoom":  0,
+                                                                                                                            "speed":  0.5
+                                                                                                                        }
+                                                                                                           }
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "button",
+                                                                                            "name":  "Zoom In",
+                                                                                            "icon":  "mdi:magnify-plus",
+                                                                                            "tap_action":  {
+                                                                                                               "action":  "call-service",
+                                                                                                               "service":  "onvif.ptz",
+                                                                                                               "data":  {
+                                                                                                                            "entity_id":  "camera.ip_camera_profile_000",
+                                                                                                                            "profile":  "PROFILE_000",
+                                                                                                                            "move_mode":  "RelativeMove",
+                                                                                                                            "pan":  0,
+                                                                                                                            "tilt":  0,
+                                                                                                                            "zoom":  0.25,
+                                                                                                                            "speed":  0.5
+                                                                                                                        }
+                                                                                                           }
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "button",
+                                                                                            "name":  "Zoom Out",
+                                                                                            "icon":  "mdi:magnify-minus",
+                                                                                            "tap_action":  {
+                                                                                                               "action":  "call-service",
+                                                                                                               "service":  "onvif.ptz",
+                                                                                                               "data":  {
+                                                                                                                            "entity_id":  "camera.ip_camera_profile_000",
+                                                                                                                            "profile":  "PROFILE_000",
+                                                                                                                            "move_mode":  "RelativeMove",
+                                                                                                                            "pan":  0,
+                                                                                                                            "tilt":  0,
+                                                                                                                            "zoom":  -0.2,
+                                                                                                                            "speed":  0.5
+                                                                                                                        }
+                                                                                                           }
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "button",
+                                                                                            "name":  "Stop",
+                                                                                            "icon":  "mdi:stop",
+                                                                                            "tap_action":  {
+                                                                                                               "action":  "call-service",
+                                                                                                               "service":  "onvif.ptz_stop",
+                                                                                                               "data":  {
+                                                                                                                            "entity_id":  "camera.ip_camera_profile_000",
+                                                                                                                            "profile":  "PROFILE_000"
+                                                                                                                        }
+                                                                                                           }
+                                                                                        }
+                                                                                    ]
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Household",
+                                   "icon":  "mdi:home-account",
+                                   "type":  "sections",
+                                   "path":  "household",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "custom:atomic-calendar-revive",
+                                                                          "name":  "Calendar",
+                                                                          "enableModeChange":  true,
+                                                                          "defaultMode":  "Calendar",
+                                                                          "entities":  [
+                                                                                           {
+                                                                                               "entity":  "update.atomic_calendar_revive_update",
+                                                                                               "icon":  ""
+                                                                                           },
+                                                                                           {
+                                                                                               "entity":  "calendar.ayorba_gmail_com",
+                                                                                               "name":  "Ayorba@gmail.com"
+                                                                                           }
+                                                                                       ]
+                                                                      },
+                                                                      {
+                                                                          "type":  "custom:grocy-chores-card",
+                                                                          "title":  "Chores",
+                                                                          "entity":  [
+                                                                                         "sensor.grocy_chores",
+                                                                                         "sensor.grocy_tasks"
+                                                                                     ],
+                                                                          "show_quantity":  5,
+                                                                          "show_assigned":  true,
+                                                                          "show_overflow":  true,
+                                                                          "show_chores_without_due":  true,
+                                                                          "show_tasks_without_due":  true,
+                                                                          "use_icons":  true,
+                                                                          "use_long_date":  true,
+                                                                          "due_in_days_threshold":  7,
+                                                                          "use_24_hours":  true,
+                                                                          "hide_text_with_no_data":  true,
+                                                                          "filter_user":  4,
+                                                                          "done_by":  4
+                                                                      },
+                                                                      {
+                                                                          "type":  "todo-list",
+                                                                          "entity":  "todo.shopping_list",
+                                                                          "title":  "Shopping List"
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               },
+                               {
+                                   "title":  "Tony\u0027s Bedroom",
+                                   "icon":  "mdi:bed",
+                                   "type":  "sections",
+                                   "path":  "tony_bedroom",
+                                   "subview":  true,
+                                   "sections":  [
+                                                    {
+                                                        "type":  "grid",
+                                                        "cards":  [
+                                                                      {
+                                                                          "type":  "media-control",
+                                                                          "entity":  "media_player.onn_4k_streaming_box"
+                                                                      },
+                                                                      {
+                                                                          "type":  "media-control",
+                                                                          "entity":  "media_player.samsung_6_series_55"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "remote.samsung_6_series_55",
+                                                                          "name":  "TV Remote"
+                                                                      },
+                                                                      {
+                                                                          "type":  "media-control",
+                                                                          "entity":  "media_player.spotify_ayorba_1986"
+                                                                      },
+                                                                      {
+                                                                          "type":  "tile",
+                                                                          "entity":  "light.0xa4c138e358edf3d8",
+                                                                          "name":  "Ceiling Light"
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ]
+                               }
+                           ]
+             },
+    "version":  1,
+    "minor_version":  1
+}
