@@ -1,0 +1,28 @@
+﻿{
+    "views":  [
+                  {
+                      "title":  "Home",
+                      "cards":  [
+                                    {
+                                        "type":  "custom:grocy-chores-card",
+                                        "entity":  "sensor.grocy_shopping_list",
+                                        "title":  "Todo",
+                                        "show_quantity":  5,
+                                        "show_assigned":  true,
+                                        "show_overflow":  true,
+                                        "show_chores_without_due":  true,
+                                        "show_tasks_without_due":  true,
+                                        "use_icons":  true,
+                                        "use_long_date":  true,
+                                        "due_in_days_threshold":  7,
+                                        "use_24_hours":  true,
+                                        "hide_text_with_no_data":  true
+                                    },
+                                    {
+                                        "type":  "todo-list",
+                                        "entity":  "todo.shopping_list"
+                                    }
+                                ]
+                  }
+              ]
+}

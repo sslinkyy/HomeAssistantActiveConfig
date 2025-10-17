@@ -1,0 +1,137 @@
+﻿{
+    "views":  [
+                  {
+                      "title":  "Home",
+                      "cards":  [
+                                    {
+                                        "type":  "entities",
+                                        "show_header_toggle":  false,
+                                        "entities":  [
+                                                         {
+                                                             "entity":  "light.0xa4c1384c438aa25c"
+                                                         }
+                                                     ]
+                                    },
+                                    {
+                                        "type":  "entities",
+                                        "entities":  [
+                                                         "light.2nd_living_room_light"
+                                                     ]
+                                    },
+                                    {
+                                        "type":  "thermostat",
+                                        "entity":  "climate.living_room",
+                                        "show_current_as_primary":  false,
+                                        "features":  [
+                                                         {
+                                                             "type":  "climate-fan-modes",
+                                                             "style":  "dropdown"
+                                                         },
+                                                         {
+                                                             "type":  "climate-hvac-modes"
+                                                         },
+                                                         {
+                                                             "type":  "climate-preset-modes",
+                                                             "style":  "dropdown"
+                                                         }
+                                                     ]
+                                    },
+                                    {
+                                        "type":  "entities",
+                                        "entities":  [
+                                                         {
+                                                             "entity":  "binary_sensor.presence_presence"
+                                                         },
+                                                         {
+                                                             "entity":  "sensor.presence_illuminance"
+                                                         },
+                                                         {
+                                                             "entity":  "sensor.presence_target_distance"
+                                                         }
+                                                     ]
+                                    },
+                                    {
+                                        "type":  "custom:grocy-chores-card",
+                                        "entity":  [
+                                                       "sensor.grocy_chores",
+                                                       "sensor.grocy_tasks"
+                                                   ],
+                                        "title":  "Todo",
+                                        "show_quantity":  5,
+                                        "show_assigned":  true,
+                                        "show_overflow":  true,
+                                        "show_chores_without_due":  true,
+                                        "show_tasks_without_due":  true,
+                                        "use_icons":  true,
+                                        "use_long_date":  true,
+                                        "due_in_days_threshold":  7,
+                                        "use_24_hours":  true,
+                                        "hide_text_with_no_data":  true
+                                    },
+                                    {
+                                        "type":  "custom:frigate-card",
+                                        "cameras":  [
+                                                        {
+                                                            "camera_entity":  "camera.ip_camera_profile_000"
+                                                        }
+                                                    ],
+                                        "live":  {
+                                                     "preload":  true
+                                                 }
+                                    },
+                                    {
+                                        "type":  "custom:mushroom-vacuum-card",
+                                        "entity":  "vacuum.mo",
+                                        "commands":  [
+                                                         "on_off",
+                                                         "start_pause",
+                                                         "stop",
+                                                         "locate",
+                                                         "clean_spot"
+                                                     ],
+                                        "icon":  "mdi:robot-vacuum",
+                                        "icon_animation":  true
+                                    }
+                                ],
+                      "badges":  [
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.chris",
+                                         "color":  "",
+                                         "name":  "Chris",
+                                         "icon":  ""
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.emily",
+                                         "color":  "",
+                                         "name":  "Emily"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.anthony_yorba",
+                                         "color":  "",
+                                         "name":  "Tony"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.jolene",
+                                         "color":  "",
+                                         "name":  "Jolene"
+                                     }
+                                 ]
+                  }
+              ]
+}

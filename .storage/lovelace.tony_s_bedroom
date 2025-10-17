@@ -1,0 +1,160 @@
+﻿{
+    "views":  [
+                  {
+                      "path":  "default_view",
+                      "title":  "Home",
+                      "cards":  [
+                                    {
+                                        "type":  "grid",
+                                        "square":  false,
+                                        "columns":  1,
+                                        "cards":  [
+                                                      {
+                                                          "type":  "entities",
+                                                          "entities":  [
+                                                                           {
+                                                                               "entity":  "media_player.onn_4k_streaming_box"
+                                                                           },
+                                                                           {
+                                                                               "entity":  "media_player.samsung_6_series_55"
+                                                                           },
+                                                                           {
+                                                                               "entity":  "remote.samsung_6_series_55"
+                                                                           }
+                                                                       ],
+                                                          "title":  "Tony\u0027s Bedroom"
+                                                      }
+                                                  ]
+                                    },
+                                    {
+                                        "type":  "custom:atomic-calendar-revive",
+                                        "name":  "Calendar",
+                                        "enableModeChange":  true,
+                                        "entities":  [
+                                                         {
+                                                             "entity":  "update.atomic_calendar_revive_update",
+                                                             "icon":  ""
+                                                         },
+                                                         {
+                                                             "entity":  "calendar.ayorba_gmail_com",
+                                                             "name":  "Ayorba@gmail.com"
+                                                         }
+                                                     ],
+                                        "defaultMode":  "Calendar"
+                                    },
+                                    {
+                                        "type":  "custom:grocy-chores-card",
+                                        "entity":  [
+                                                       "sensor.grocy_chores",
+                                                       "sensor.grocy_tasks"
+                                                   ],
+                                        "title":  "Chores",
+                                        "show_quantity":  5,
+                                        "show_assigned":  true,
+                                        "show_overflow":  true,
+                                        "show_chores_without_due":  true,
+                                        "show_tasks_without_due":  true,
+                                        "use_icons":  true,
+                                        "use_long_date":  true,
+                                        "due_in_days_threshold":  7,
+                                        "use_24_hours":  true,
+                                        "hide_text_with_no_data":  true,
+                                        "filter_user":  4,
+                                        "done_by":  4
+                                    },
+                                    {
+                                        "type":  "light",
+                                        "entity":  "light.0xa4c138e358edf3d8"
+                                    },
+                                    {
+                                        "type":  "media-control",
+                                        "entity":  "media_player.spotify_ayorba_1986"
+                                    },
+                                    {
+                                        "type":  "custom:weather-chart-card",
+                                        "entity":  "weather.home",
+                                        "show_main":  true,
+                                        "show_temperature":  true,
+                                        "show_current_condition":  true,
+                                        "show_attributes":  true,
+                                        "show_time":  false,
+                                        "show_time_seconds":  false,
+                                        "show_day":  false,
+                                        "show_date":  false,
+                                        "show_humidity":  true,
+                                        "show_pressure":  true,
+                                        "show_wind_direction":  true,
+                                        "show_wind_speed":  true,
+                                        "show_sun":  true,
+                                        "show_feels_like":  false,
+                                        "show_dew_point":  false,
+                                        "show_wind_gust_speed":  false,
+                                        "show_visibility":  false,
+                                        "show_last_changed":  false,
+                                        "use_12hour_format":  false,
+                                        "icons_size":  25,
+                                        "animated_icons":  false,
+                                        "icon_style":  "style1",
+                                        "autoscroll":  false,
+                                        "forecast":  {
+                                                         "precipitation_type":  "rainfall",
+                                                         "show_probability":  true,
+                                                         "labels_font_size":  "11",
+                                                         "precip_bar_size":  "100",
+                                                         "style":  "style2",
+                                                         "show_wind_forecast":  true,
+                                                         "condition_icons":  true,
+                                                         "round_temp":  false,
+                                                         "type":  "daily",
+                                                         "number_of_forecasts":  "0",
+                                                         "disable_animation":  false
+                                                     },
+                                        "units":  {
+                                                      "pressure":  "inHg",
+                                                      "speed":  "mph"
+                                                  }
+                                    },
+                                    {
+                                        "type":  "todo-list",
+                                        "entity":  "todo.shopping_list",
+                                        "title":  "Shopping List"
+                                    },
+                                    {
+                                        "type":  "entities",
+                                        "entities":  [
+                                                         "light.master_bathroom_light"
+                                                     ]
+                                    }
+                                ],
+                      "badges":  [
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.emily",
+                                         "icon":  "",
+                                         "color":  "",
+                                         "name":  "Emily"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.chris",
+                                         "color":  "",
+                                         "name":  "Chris"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.jolene",
+                                         "color":  ""
+                                     }
+                                 ]
+                  }
+              ]
+}

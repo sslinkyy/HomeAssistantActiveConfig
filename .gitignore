@@ -4,6 +4,7 @@ home-assistant_v2.db-*
 *.log
 *.sqlite*
 .storage/
+!.storage/
 .cloud/
 tts/
 deps/
@@ -36,5 +37,6 @@ zigbee2mqtt/logs/
 
 # Allowlist Lovelace Storage UI files only (keep other .storage files ignored)
 !.storage/lovelace
+!.storage/lovelace.*
 !.storage/lovelace_dashboards
 !.storage/lovelace_resources

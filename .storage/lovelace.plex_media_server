@@ -1,0 +1,6 @@
+﻿{
+    "strategy":  {
+                     "type":  "iframe",
+                     "url":  "http://homeassistant.local:32400/web/index.html"
+                 }
+}

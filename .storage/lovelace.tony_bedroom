@@ -1,0 +1,25 @@
+﻿{
+    "strategy":  {
+                     "type":  "original-states",
+                     "areas":  {
+                                   "hidden":  [
+                                                  "patio",
+                                                  "master_bathroom",
+                                                  "main_bathroom",
+                                                  "living_room",
+                                                  "laundry",
+                                                  "kitchen",
+                                                  "garage",
+                                                  "emily_s_bedroom",
+                                                  "chris_s_bedroom",
+                                                  "guest_bedroom",
+                                                  "chris_room"
+                                              ],
+                                   "order":  [
+                                                 "bedroom",
+                                                 "front_porch",
+                                                 "carport"
+                                             ]
+                               }
+                 }
+}

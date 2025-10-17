@@ -1,0 +1,71 @@
+﻿{
+    "views":  [
+                  {
+                      "path":  "default_view",
+                      "title":  "Home",
+                      "cards":  [
+                                    {
+                                        "type":  "custom:weather-card",
+                                        "entity":  "weather.home"
+                                    },
+                                    {
+                                        "type":  "custom:grocy-chores-card",
+                                        "entity":  [
+                                                       "sensor.grocy_chores",
+                                                       "sensor.grocy_tasks"
+                                                   ],
+                                        "title":  "Chores",
+                                        "show_quantity":  5,
+                                        "show_assigned":  true,
+                                        "show_overflow":  true,
+                                        "show_chores_without_due":  true,
+                                        "show_tasks_without_due":  true,
+                                        "use_icons":  true,
+                                        "use_long_date":  true,
+                                        "due_in_days_threshold":  7,
+                                        "use_24_hours":  true,
+                                        "hide_text_with_no_data":  true,
+                                        "filter_user":  2
+                                    },
+                                    {
+                                        "type":  "light",
+                                        "entity":  "light.chris_bedroom_light"
+                                    },
+                                    {
+                                        "type":  "todo-list",
+                                        "entity":  "todo.shopping_list",
+                                        "title":  "Shopping List"
+                                    }
+                                ],
+                      "badges":  [
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  false,
+                                         "entity":  "person.anthony_yorba",
+                                         "color":  "",
+                                         "name":  "Tony"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  false,
+                                         "entity":  "person.emily",
+                                         "color":  "",
+                                         "name":  "Emily"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.jolene",
+                                         "color":  "",
+                                         "name":  "Jolene"
+                                     }
+                                 ]
+                  }
+              ]
+}

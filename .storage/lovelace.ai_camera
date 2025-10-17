@@ -1,0 +1,43 @@
+﻿{
+    "views":  [
+                  {
+                      "title":  "AI Camera",
+                      "path":  "ai_camera",
+                      "cards":  [
+                                    {
+                                        "type":  "picture-entity",
+                                        "entity":  "camera.ip_camera_profile_000",
+                                        "name":  "Live Camera",
+                                        "camera_view":  "live"
+                                    },
+                                    {
+                                        "type":  "markdown",
+                                        "title":  "Latest Snapshot (auto-updates)",
+                                        "content":  "![latest](/local/snapshots/ai_camera_latest.jpg?t={{ now().timestamp() }})\n"
+                                    },
+                                    {
+                                        "type":  "markdown",
+                                        "title":  "Snapshot (this event)",
+                                        "content":  "{% set v = states(\u0027input_text.ai_camera_last_image\u0027) %} {% set path = v if v and v.startswith(\u0027/\u0027) else \u0027/local/snapshots/\u0027 ~ v %} {% set abs = \u0027https://pvq6zf15x0giwsnqhhccw1beyhnzdazp.ui.nabu.casa\u0027 ~ path %} {% if v and v|length \u003e 5 %} ![snapshot]({{ abs }}?t={{ now().timestamp() }}) {% else %}\n    _No event snapshot yet._\n  {% endif %}\n"
+                                    },
+                                    {
+                                        "type":  "markdown",
+                                        "title":  "Last AI Description",
+                                        "content":  "**Updated:** {{\n  (states.input_text.ai_camera_last_text.last_changed | as_timestamp | timestamp_custom(\u0027%Y-%m-%d %H:%M:%S\u0027))\n  if states.input_text.ai_camera_last_text is defined else \u0027—\u0027\n}}\n---\n{{ states(\u0027input_text.ai_camera_last_text\u0027) | default(\u0027No description yet.\u0027, true) }}\n"
+                                    },
+                                    {
+                                        "type":  "entities",
+                                        "title":  "Quick Controls",
+                                        "entities":  [
+                                                         {
+                                                             "entity":  "input_text.ai_persona_prompt",
+                                                             "name":  "Persona Prompt (edit me)"
+                                                         },
+                                                         "input_text.ai_camera_last_image",
+                                                         "input_text.ai_camera_last_text"
+                                                     ]
+                                    }
+                                ]
+                  }
+              ]
+}

@@ -1,0 +1,249 @@
+﻿{
+    "views":  [
+                  {
+                      "title":  "Home",
+                      "cards":  [
+                                    {
+                                        "type":  "picture-entity",
+                                        "entity":  "camera.ip_camera_profile_000"
+                                    },
+                                    {
+                                        "type":  "thermostat",
+                                        "entity":  "climate.living_room",
+                                        "name":  "Nest",
+                                        "show_current_as_primary":  true,
+                                        "features":  [
+                                                         {
+                                                             "type":  "climate-hvac-modes"
+                                                         },
+                                                         {
+                                                             "type":  "climate-preset-modes",
+                                                             "style":  "dropdown"
+                                                         },
+                                                         {
+                                                             "type":  "climate-fan-modes",
+                                                             "style":  "dropdown"
+                                                         }
+                                                     ]
+                                    },
+                                    {
+                                        "square":  false,
+                                        "type":  "grid",
+                                        "columns":  1,
+                                        "cards":  [
+                                                      {
+                                                          "type":  "entities",
+                                                          "entities":  [
+                                                                           {
+                                                                               "entity":  "remote.samsung_6_series_55"
+                                                                           }
+                                                                       ],
+                                                          "theme":  "LCARS Modern",
+                                                          "state_color":  true,
+                                                          "show_header_toggle":  false
+                                                      },
+                                                      {
+                                                          "type":  "media-control",
+                                                          "entity":  "media_player.tv_samsung_6_series_55"
+                                                      }
+                                                  ]
+                                    },
+                                    {
+                                        "type":  "grid",
+                                        "square":  false,
+                                        "columns":  1,
+                                        "cards":  [
+                                                      {
+                                                          "type":  "entities",
+                                                          "entities":  [
+                                                                           "remote.living_room_tv"
+                                                                       ],
+                                                          "title":  "Living Room TV"
+                                                      }
+                                                  ]
+                                    },
+                                    {
+                                        "type":  "custom:weather-radar-card",
+                                        "data_source":  "RainViewer-TWC",
+                                        "map_style":  "Satellite"
+                                    },
+                                    {
+                                        "type":  "todo-list",
+                                        "entity":  "todo.shopping_list",
+                                        "title":  "Shopping List"
+                                    },
+                                    {
+                                        "type":  "custom:grocy-chores-card",
+                                        "entity":  [
+                                                       "sensor.grocy_chores",
+                                                       "sensor.grocy_tasks"
+                                                   ],
+                                        "title":  "Chores",
+                                        "show_quantity":  5,
+                                        "show_assigned":  true,
+                                        "show_overflow":  true,
+                                        "show_chores_without_due":  true,
+                                        "show_tasks_without_due":  true,
+                                        "use_icons":  true,
+                                        "use_long_date":  true,
+                                        "due_in_days_threshold":  7,
+                                        "use_24_hours":  true,
+                                        "hide_text_with_no_data":  true,
+                                        "show_empty":  false,
+                                        "browser_mod":  true
+                                    },
+                                    {
+                                        "type":  "custom:hourly-weather",
+                                        "entity":  "weather.home",
+                                        "icons":  true,
+                                        "show_wind":  "true",
+                                        "show_date":  "all",
+                                        "show_precipitation_amounts":  true,
+                                        "show_precipitation_probability":  true
+                                    },
+                                    {
+                                        "type":  "light",
+                                        "entity":  "light.outside_motion_light"
+                                    },
+                                    {
+                                        "type":  "light",
+                                        "entity":  "light.spare_room_light"
+                                    },
+                                    {
+                                        "type":  "vertical-stack",
+                                        "cards":  [
+                                                      {
+                                                          "type":  "entities",
+                                                          "title":  "AI Assistant",
+                                                          "entities":  [
+                                                                           {
+                                                                               "entity":  "input_text.ai_prompt",
+                                                                               "name":  "Prompt"
+                                                                           }
+                                                                       ]
+                                                      },
+                                                      {
+                                                          "type":  "horizontal-stack",
+                                                          "cards":  [
+                                                                        {
+                                                                            "type":  "button",
+                                                                            "name":  "Send",
+                                                                            "icon":  "mdi:send",
+                                                                            "tap_action":  {
+                                                                                               "action":  "call-service",
+                                                                                               "service":  "script.send_ai_prompt"
+                                                                                           }
+                                                                        },
+                                                                        {
+                                                                            "type":  "button",
+                                                                            "name":  "Clear Prompt",
+                                                                            "icon":  "mdi:eraser",
+                                                                            "tap_action":  {
+                                                                                               "action":  "call-service",
+                                                                                               "service":  "input_text.set_value",
+                                                                                               "target":  {
+                                                                                                              "entity_id":  "input_text.ai_prompt"
+                                                                                                          },
+                                                                                               "data":  {
+                                                                                                            "value":  ""
+                                                                                                        }
+                                                                                           }
+                                                                        },
+                                                                        {
+                                                                            "type":  "button",
+                                                                            "name":  "Clear Response",
+                                                                            "icon":  "mdi:comment-remove-outline",
+                                                                            "tap_action":  {
+                                                                                               "action":  "call-service",
+                                                                                               "service":  "input_text.set_value",
+                                                                                               "target":  {
+                                                                                                              "entity_id":  "input_text.ai_response"
+                                                                                                          },
+                                                                                               "data":  {
+                                                                                                            "value":  ""
+                                                                                                        }
+                                                                                           }
+                                                                        }
+                                                                    ]
+                                                      },
+                                                      {
+                                                          "type":  "markdown",
+                                                          "title":  "Response",
+                                                          "content":  "{{ states(\u0027input_text.ai_response\u0027) }}\n"
+                                                      },
+                                                      {
+                                                          "type":  "entities",
+                                                          "entities":  [
+                                                                           {
+                                                                               "entity":  "input_text.ai_response",
+                                                                               "name":  "AI Response (raw)"
+                                                                           }
+                                                                       ]
+                                                      }
+                                                  ]
+                                    },
+                                    {
+                                        "type":  "entities",
+                                        "entities":  [
+                                                         "input_text.ai_persona_prompt"
+                                                     ]
+                                    }
+                                ],
+                      "badges":  [
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.anthony_yorba",
+                                         "color":  "",
+                                         "name":  "Tony"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.emily",
+                                         "color":  "",
+                                         "name":  "Emily"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.chris",
+                                         "color":  "",
+                                         "name":  "Chris"
+                                     },
+                                     {
+                                         "type":  "entity",
+                                         "show_name":  true,
+                                         "show_state":  true,
+                                         "show_icon":  true,
+                                         "entity":  "person.jolene",
+                                         "color":  "",
+                                         "name":  "Jolene"
+                                     }
+                                 ]
+                  },
+                  {
+                      "type":  "sidebar",
+                      "path":  "scenes",
+                      "title":  "Scenes",
+                      "icon":  "mdi:book-multiple",
+                      "visible":  [
+                                      {
+                                          "user":  "28ed2fe59b4646c0be01ce4f6cab48f3"
+                                      },
+                                      {
+                                          "user":  "76cd7455493e4715910b9d630dd8fbb6"
+                                      }
+                                  ],
+                      "cards":  [
+
+                                ]
+                  }
+              ]
+}

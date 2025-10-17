@@ -1,0 +1,118 @@
+﻿[
+    {
+        "id":  "map",
+        "icon":  "mdi:map",
+        "title":  "Map",
+        "url_path":  "map",
+        "show_in_sidebar":  true,
+        "mode":  "storage",
+        "require_admin":  false
+    },
+    {
+        "id":  "dashboard_test",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:caravan",
+        "title":  "Overview",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "dashboard-test"
+    },
+    {
+        "id":  "plex_media_server",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:plex",
+        "title":  "Plex Media Server",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "plex-media-server"
+    },
+    {
+        "id":  "emily_s_room",
+        "show_in_sidebar":  false,
+        "icon":  "mdi:account",
+        "title":  "Emily\u0027s Room",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "emily-s-room"
+    },
+    {
+        "id":  "chris_s_bedroom",
+        "show_in_sidebar":  false,
+        "icon":  "mdi:account",
+        "title":  "Chris\u0027s Bedroom",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "chris-s-bedroom"
+    },
+    {
+        "id":  "tony_bedroom",
+        "show_in_sidebar":  false,
+        "icon":  "mdi:account",
+        "title":  "Tony Bedroom",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "tony-bedroom"
+    },
+    {
+        "id":  "chris_bedroom",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:bed",
+        "title":  "Chris Bedroom",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "chris-bedroom"
+    },
+    {
+        "id":  "emily_s_bedroom",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:bed",
+        "title":  "Emily\u0027s Bedroom",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "emily-s-bedroom"
+    },
+    {
+        "id":  "tony_s_bedroom",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:bed",
+        "title":  "Tony\u0027s Bedroom",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "tony-s-bedroom"
+    },
+    {
+        "id":  "living_room",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:floor-lamp-outline",
+        "title":  "Living Room",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "living-room"
+    },
+    {
+        "id":  "dashboard_kitchen",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:fridge",
+        "title":  "Kitchen",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "dashboard-kitchen"
+    },
+    {
+        "id":  "dashboard_vacuum",
+        "show_in_sidebar":  true,
+        "icon":  "mdi:robot-vacuum",
+        "title":  "Vacuum",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "dashboard-vacuum"
+    },
+    {
+        "id":  "ai_camera",
+        "show_in_sidebar":  true,
+        "title":  "AI Camera",
+        "require_admin":  false,
+        "mode":  "storage",
+        "url_path":  "ai-camera"
+    }
+]

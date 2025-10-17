@@ -1,0 +1,530 @@
+﻿{
+    "views":  [
+                  {
+                      "title":  "Home",
+                      "sections":  [
+                                       {
+                                           "type":  "grid",
+                                           "cards":  [
+                                                         {
+                                                             "type":  "heading",
+                                                             "heading_style":  "title"
+                                                         },
+                                                         {
+                                                             "type":  "entities",
+                                                             "entities":  [
+                                                                              {
+                                                                                  "entity":  "switch.mo_auto_drying",
+                                                                                  "name":  "Auto Drying"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_auto_empty_mode",
+                                                                                  "name":  "Auto Empty Mode"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_cleangenius",
+                                                                                  "name":  "CleanGenius"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_cleaning_mode",
+                                                                                  "name":  "Cleaning Mode"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_cleaning_route",
+                                                                                  "name":  "Cleaning Route"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_cleaning_sequence",
+                                                                                  "name":  "Cleaning Sequence"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_customized_cleaning",
+                                                                                  "name":  "Customized Cleaning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_drying_time",
+                                                                                  "name":  "Drying Time"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_hot_washing",
+                                                                                  "name":  "Hot Washing"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_max_suction_power",
+                                                                                  "name":  "Max Suction Power"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "vacuum.mo"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_mop_pad_humidity",
+                                                                                  "name":  "Mop Pad Humidity"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_low_water_warning",
+                                                                                  "name":  "Mop Wash Level"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_selected_map",
+                                                                                  "name":  "Selected Map"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "number.mo_self_clean_area",
+                                                                                  "name":  "Self Clean Area"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_self_clean_frequency",
+                                                                                  "name":  "Self Clean Frequency"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "number.mo_self_clean_time",
+                                                                                  "name":  "Self Clean Time"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_self_clean",
+                                                                                  "name":  "Self-Clean"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_self_clean",
+                                                                                  "name":  "Self-Clean"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_start_auto_empty",
+                                                                                  "name":  "Start Auto Empty"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_manual_drying",
+                                                                                  "name":  "Start Drying"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_start_recleaning",
+                                                                                  "name":  "Start Re-Cleaning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_suction_level",
+                                                                                  "name":  "Suction Level"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "number.mo_wetness_level",
+                                                                                  "name":  "Wetness Level"
+                                                                              }
+                                                                          ],
+                                                             "title":  "Mo"
+                                                         }
+                                                     ]
+                                       },
+                                       {
+                                           "type":  "grid",
+                                           "cards":  [
+                                                         {
+                                                             "type":  "heading",
+                                                             "heading":  "New section"
+                                                         },
+                                                         {
+                                                             "type":  "grid",
+                                                             "square":  false,
+                                                             "columns":  1,
+                                                             "cards":  [
+                                                                           {
+                                                                               "show_state":  true,
+                                                                               "show_name":  true,
+                                                                               "camera_view":  "auto",
+                                                                               "type":  "picture-entity",
+                                                                               "entity":  "camera.mo_map"
+                                                                           },
+                                                                           {
+                                                                               "type":  "entities",
+                                                                               "entities":  [
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_auto_empty_status",
+                                                                                                    "name":  "Auto Empty Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_battery_level",
+                                                                                                    "name":  "Battery Level"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_charging_status",
+                                                                                                    "name":  "Charging Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_cleaned_area",
+                                                                                                    "name":  "Cleaned Area"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_cleaning_progress",
+                                                                                                    "name":  "Cleaning Progress"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_cleaning_time",
+                                                                                                    "name":  "Cleaning Time"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_current_room",
+                                                                                                    "name":  "Current Room"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_drainage_status",
+                                                                                                    "name":  "Drainage Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_drying_progress",
+                                                                                                    "name":  "Drying Progress"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_dust_collection",
+                                                                                                    "name":  "Dust Collection"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_error",
+                                                                                                    "name":  "Error"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_low_water_warning",
+                                                                                                    "name":  "Low Water Warning"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_mapping_time",
+                                                                                                    "name":  "Mapping Time"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_mop_pad",
+                                                                                                    "name":  "Mop Pad"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_relocation_status",
+                                                                                                    "name":  "Relocation Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_self_wash_base_status",
+                                                                                                    "name":  "Self-Wash Base Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_state",
+                                                                                                    "name":  "State"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_status",
+                                                                                                    "name":  "Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_stream_status",
+                                                                                                    "name":  "Stream Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_task_status",
+                                                                                                    "name":  "Task Status"
+                                                                                                },
+                                                                                                {
+                                                                                                    "entity":  "sensor.mo_task_type",
+                                                                                                    "name":  "Task Type"
+                                                                                                }
+                                                                                            ],
+                                                                               "title":  "Mo"
+                                                                           }
+                                                                       ]
+                                                         }
+                                                     ]
+                                       },
+                                       {
+                                           "type":  "grid",
+                                           "cards":  [
+                                                         {
+                                                             "type":  "heading",
+                                                             "heading":  "New section"
+                                                         },
+                                                         {
+                                                             "type":  "entities",
+                                                             "entities":  [
+                                                                              {
+                                                                                  "entity":  "switch.mo_ai_fluid_detection",
+                                                                                  "name":  "AI Fluid Detection"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_ai_furniture_detection",
+                                                                                  "name":  "AI Furniture Detection"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_ai_obstacle_detection",
+                                                                                  "name":  "AI Obstacle Detection"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_ai_obstacle_image_upload",
+                                                                                  "name":  "AI Obstacle Image Upload"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_ai_obstacle_picture",
+                                                                                  "name":  "AI Obstacle Picture"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_ai_pet_detection",
+                                                                                  "name":  "AI Pet Detection"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_auto_mount_mop",
+                                                                                  "name":  "Auto Mount Mop"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_auto_recleaning",
+                                                                                  "name":  "Auto Re-Cleaning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_auto_rewashing",
+                                                                                  "name":  "Auto Re-Washing"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_auto_water_refilling",
+                                                                                  "name":  "Auto Water Refilling"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "number.mo_camera_light_brightness",
+                                                                                  "name":  "Camera Light Brightness"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_camera_light_brightness_auto",
+                                                                                  "name":  "Camera Light Brightness Auto"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_carpet_boost",
+                                                                                  "name":  "Carpet Boost"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_carpet_cleaning",
+                                                                                  "name":  "Carpet Cleaning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_child_lock",
+                                                                                  "name":  "Child Lock"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_clean_carpets_first",
+                                                                                  "name":  "Clean Carpets First"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_collision_avoidance",
+                                                                                  "name":  "Collision Avoidance"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_dnd",
+                                                                                  "name":  "DnD"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "time.mo_dnd_end",
+                                                                                  "name":  "DnD End"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "time.mo_dnd_start",
+                                                                                  "name":  "DnD Start"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_fill_light",
+                                                                                  "name":  "Fill Light"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_floor_direction_cleaning",
+                                                                                  "name":  "Floor Direction Cleaning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_fuzzy_obstacle_detection",
+                                                                                  "name":  "Fuzzy Obstacle Detection"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_gap_cleaning_extension",
+                                                                                  "name":  "Gap Cleaning Extension"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_human_follow",
+                                                                                  "name":  "Human Follow"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_intelligent_recognition",
+                                                                                  "name":  "Intelligent Recognition"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_intensive_carpet_cleaning",
+                                                                                  "name":  "Intensive Carpet Cleaning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_large_particles_boost",
+                                                                                  "name":  "Large Particles Boost"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_map_rotation",
+                                                                                  "name":  "Map Rotation"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_mopping_under_furnitures",
+                                                                                  "name":  "Mopping Under Furnitures"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_multi_floor_map",
+                                                                                  "name":  "Multi Floor Map"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_obstacle_avoidance",
+                                                                                  "name":  "Obstacle Avoidance"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_off_peak_charging",
+                                                                                  "name":  "Off-Peak Charging"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "time.mo_off_peak_charging_end",
+                                                                                  "name":  "Off-Peak Charging End"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "time.mo_off_peak_charging_start",
+                                                                                  "name":  "Off-Peak Charging Start"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_pet_focused_detection",
+                                                                                  "name":  "Pet Focused Detection"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_pet_picture",
+                                                                                  "name":  "Pet Picture"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_resume_cleaning",
+                                                                                  "name":  "Resume Cleaning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_stain_avoidance",
+                                                                                  "name":  "Stain Avoidance"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_start_fast_mapping",
+                                                                                  "name":  "Start Fast Mapping"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_streaming_voice_prompt",
+                                                                                  "name":  "Streaming Voice Prompt"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_cleangenius_mode",
+                                                                                  "name":  "Ultra Clean Mode"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "switch.mo_voice_assistant",
+                                                                                  "name":  "Voice Assistant"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "select.mo_voice_assistant_language",
+                                                                                  "name":  "Voice Assistant Language"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "number.mo_volume",
+                                                                                  "name":  "Volume"
+                                                                              }
+                                                                          ],
+                                                             "title":  "Mo"
+                                                         }
+                                                     ]
+                                       },
+                                       {
+                                           "type":  "grid",
+                                           "cards":  [
+                                                         {
+                                                             "type":  "heading",
+                                                             "heading":  "New section"
+                                                         },
+                                                         {
+                                                             "type":  "entities",
+                                                             "entities":  [
+                                                                              {
+                                                                                  "entity":  "button.mo_base_station_self_repair",
+                                                                                  "name":  "Base Station Self Repair"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_clear_warning",
+                                                                                  "name":  "Clear Warning"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_reset_filter",
+                                                                                  "name":  "Reset Filter"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_reset_main_brush",
+                                                                                  "name":  "Reset Main Brush"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_reset_sensor",
+                                                                                  "name":  "Reset Sensor"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_reset_side_brush",
+                                                                                  "name":  "Reset Side Brush"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "button.mo_water_tank_draining",
+                                                                                  "name":  "Water Tank Draining"
+                                                                              },
+                                                                              "sensor.mo_cleaning_history",
+                                                                              {
+                                                                                  "entity":  "sensor.mo_cleaning_count",
+                                                                                  "name":  "Cleaning Count"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_cruising_history",
+                                                                                  "name":  "Cruising History"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_filter_left",
+                                                                                  "name":  "Filter Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_filter_time_left",
+                                                                                  "name":  "Filter Time Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_firmware_version",
+                                                                                  "name":  "Firmware Version"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_first_cleaning_date",
+                                                                                  "name":  "First Cleaning Date"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_main_brush_time_left",
+                                                                                  "name":  "Main Brush  Time Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_main_brush_left",
+                                                                                  "name":  "Main Brush Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_sensor_dirty_left",
+                                                                                  "name":  "Sensor Dirty Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_sensor_dirty_time_left",
+                                                                                  "name":  "Sensor Dirty Time Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_side_brush_left",
+                                                                                  "name":  "Side Brush Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_side_brush_time_left",
+                                                                                  "name":  "Side Brush Time Left"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_total_cleaned_area",
+                                                                                  "name":  "Total Cleaned Area"
+                                                                              },
+                                                                              {
+                                                                                  "entity":  "sensor.mo_total_cleaning_time",
+                                                                                  "name":  "Total Cleaning Time"
+                                                                              }
+                                                                          ],
+                                                             "title":  "Mo"
+                                                         }
+                                                     ]
+                                       }
+                                   ],
+                      "cards":  [
+
+                                ]
+                  }
+              ]
+}
