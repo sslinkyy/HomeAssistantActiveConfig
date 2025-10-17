@@ -8,22 +8,19 @@ views:
     sections:
       - type: grid
         cards:
-          - type: chips
-            chips:
-              - type: template
-                content: "Doors/Windows: {{ states('sensor.open_doors_windows') }}"
-              - type: template
-                content: "Lights: {{ states('sensor.lights_on') }}"
-              - type: template
-                content: "People: {{ states('sensor.people_home') }}"
-              - type: weather
+          - type: grid
+            cards:
+              - type: tile
+                entity: sensor.open_doors_windows
+                name: Doors/Windows
+              - type: tile
+                entity: sensor.lights_on
+                name: Lights On
+              - type: tile
+                entity: sensor.people_home
+                name: People Home
+              - type: weather-forecast
                 entity: weather.home
-              - type: entity
-                entity: person.emily
-              - type: entity
-                entity: person.chris
-              - type: entity
-                entity: person.jolene
           - type: tile
             entity: climate.living_room
             name: Climate

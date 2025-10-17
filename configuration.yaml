@@ -86,6 +86,12 @@ input_text:
   ai_prefix:
     name: AI Prefix
     max: 255
+  ai_camera_last_text:
+    name: AI Camera Last Text
+    max: 255
+  ai_camera_last_image:
+    name: AI Camera Last Image
+    max: 255
 
 lovelace:
   dashboards:

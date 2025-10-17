@@ -39,3 +39,4 @@ zigbee2mqtt/logs/
 !.storage/lovelace
 !.storage/lovelace.*
 !.storage/lovelace_resources
+.storage/lovelace.map
