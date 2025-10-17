@@ -24,78 +24,9 @@ views:
           - type: tile
             entity: climate.living_room
             name: Climate
-          - type: conditional
-            conditions:
-              - entity: binary_sensor.presence
-                state_not: unavailable
-            card:
-              type: tile
-              entity: binary_sensor.presence
-              name: Living Room Presence
           - type: tile
-            name: Lights On
-            entity: sensor.lights_on
-            tap_action:
-              action: navigate
-              navigation_path: /pro/lights
-          - type: tile
-            name: Cameras
-            icon: mdi:cctv
-            tap_action:
-              action: navigate
-              navigation_path: /pro/cameras
-          - type: tile
-            name: Driveway
-            icon: mdi:car-estate
-            tap_action:
-              action: navigate
-              navigation_path: /pro/driveway
-          - type: tile
-            name: Household
-            icon: mdi:home-account
-            tap_action:
-              action: navigate
-              navigation_path: /pro/household
-          - type: tile
-            name: Living Room
-            icon: mdi:sofa
-            tap_action:
-              action: navigate
-              navigation_path: /pro/living_room
-          - type: tile
-            name: Master Bedroom
-            icon: mdi:bed-king
-            tap_action:
-              action: navigate
-              navigation_path: /pro/master_bedroom
-          - type: tile
-            name: Chris Bedroom
-            icon: mdi:bed
-            tap_action:
-              action: navigate
-              navigation_path: /pro/chris_bedroom
-          - type: tile
-            name: Emily Bedroom
-            icon: mdi:bed
-            tap_action:
-              action: navigate
-              navigation_path: /pro/emily_bedroom
-          - type: tile
-            name: Tony's Bedroom
-            icon: mdi:bed
-            tap_action:
-              action: navigate
-              navigation_path: /pro/tony_bedroom
-      - type: grid
-        cards:
-          - type: conditional
-            conditions:
-              - entity: input_text.ai_camera_last_text
-                state_not: unavailable
-            card:
-              type: tile
-              entity: input_text.ai_camera_last_text
-              name: Driveway Camera
+            entity: input_text.ai_camera_last_text
+            name: Driveway Camera
           - type: picture-entity
             entity: camera.ip_camera_profile_000
             name: Driveway Camera
@@ -415,3 +346,4 @@ views:
           - type: tile
             entity: light.0xa4c138e358edf3d8
             name: Ceiling Light
+
