@@ -54,6 +54,12 @@ views:
               action: navigate
               navigation_path: /pro/driveway
           - type: tile
+            name: Household
+            icon: mdi:home-account
+            tap_action:
+              action: navigate
+              navigation_path: /pro/household
+          - type: tile
             name: Living Room
             icon: mdi:sofa
             tap_action:
@@ -94,6 +100,48 @@ views:
             show_state: false
             image: /local/snapshots/ai_camera_latest.jpg
             camera_view: auto
+
+      - type: grid
+        cards:
+          - type: conditional
+            conditions:
+              - entity: media_player.samsung_6_series_55
+                state_not: off
+              - entity: media_player.samsung_6_series_55
+                state_not: idle
+              - entity: media_player.samsung_6_series_55
+                state_not: standby
+              - entity: media_player.samsung_6_series_55
+                state_not: unavailable
+            card:
+              type: media-control
+              entity: media_player.samsung_6_series_55
+          - type: conditional
+            conditions:
+              - entity: media_player.onn_4k_streaming_box
+                state_not: off
+              - entity: media_player.onn_4k_streaming_box
+                state_not: idle
+              - entity: media_player.onn_4k_streaming_box
+                state_not: standby
+              - entity: media_player.onn_4k_streaming_box
+                state_not: unavailable
+            card:
+              type: media-control
+              entity: media_player.onn_4k_streaming_box
+          - type: conditional
+            conditions:
+              - entity: media_player.spotify_ayorba_1986
+                state_not: off
+              - entity: media_player.spotify_ayorba_1986
+                state_not: idle
+              - entity: media_player.spotify_ayorba_1986
+                state_not: standby
+              - entity: media_player.spotify_ayorba_1986
+                state_not: unavailable
+            card:
+              type: media-control
+              entity: media_player.spotify_ayorba_1986
 
   - title: Cameras
     icon: mdi:cctv
@@ -347,6 +395,44 @@ views:
                   data:
                     entity_id: camera.ip_camera_profile_000
                     profile: PROFILE_000
+
+  - title: Household
+    icon: mdi:home-account
+    type: sections
+    path: household
+    subview: true
+    sections:
+      - type: grid
+        cards:
+          - type: custom:atomic-calendar-revive
+            name: Calendar
+            enableModeChange: true
+            defaultMode: Calendar
+            entities:
+              - entity: update.atomic_calendar_revive_update
+                icon: ''
+              - entity: calendar.ayorba_gmail_com
+                name: Ayorba@gmail.com
+          - type: custom:grocy-chores-card
+            title: Chores
+            entity:
+              - sensor.grocy_chores
+              - sensor.grocy_tasks
+            show_quantity: 5
+            show_assigned: true
+            show_overflow: true
+            show_chores_without_due: true
+            show_tasks_without_due: true
+            use_icons: true
+            use_long_date: true
+            due_in_days_threshold: 7
+            use_24_hours: true
+            hide_text_with_no_data: true
+            filter_user: 4
+            done_by: 4
+          - type: todo-list
+            entity: todo.shopping_list
+            title: Shopping List
   - title: Tony's Bedroom
     icon: mdi:bed
     type: sections
