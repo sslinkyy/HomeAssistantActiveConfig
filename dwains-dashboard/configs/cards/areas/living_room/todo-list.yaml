@@ -1,0 +1,10 @@
+col_span: '1'
+col_span_lg: '1'
+col_span_xl: '1'
+entity: todo.shopping_list
+position: top
+row_span: '1'
+row_span_lg: '1'
+row_span_xl: '1'
+title: Shopping List
+type: todo-list

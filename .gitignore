@@ -1,0 +1,26 @@
+# HA runtime/state
+home-assistant_v2.db
+home-assistant_v2.db-*
+*.log
+*.sqlite*
+.storage/
+.cloud/
+tts/
+deps/
+custom_components/__pycache__/
+python_scripts/__pycache__/
+
+# Secrets
+secrets.yaml
+*.key
+*.pem
+*.pfx
+*.crt
+*.age
+*.enc
+
+# Backups / media / temp
+.backups/
+media/
+tmp/
+www/generated/

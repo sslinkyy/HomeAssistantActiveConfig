@@ -1,0 +1,26 @@
+conversation:
+  intents:
+    CreateCameraAutomation:
+      - "create a camera alert automation"
+      - "create a camera alert automation named {name}"
+      - "make an automation named {name} to alert me"
+      - "build a motion alert automation named {name}"
+
+intent_script:
+  CreateCameraAutomation:
+    description: "Create an automation that alerts both phones on motion"
+    fields:
+      name:
+        description: "Automation name"
+        example: "Driveway Alert"
+    speech:
+      text: "Creating {{ name | default('AI Camera Alert') }}."
+    action:
+      - service: script.create_motion_alert
+        data:
+          alias: "{{ name | default('AI Camera Alert') }}"
+          description: "Created by voice via CreateCameraAutomation intent"
+          motion_entity: "binary_sensor.0b4b61b6113cdb0b1a2f477922dd5164"
+          notify_title: "AI Camera"
+          notify_message: "Motion detected on {{ 'binary_sensor.0b4b61b6113cdb0b1a2f477922dd5164' }}"
+          mode: "single"

@@ -1,0 +1,530 @@
+- id: '1727040684464'
+  alias: Climate off when gone
+  description: ''
+  triggers:
+  - entity_id: device_tracker.sm_s928u1
+    zone: zone.home
+    event: leave
+    trigger: zone
+  conditions: []
+  actions:
+  - action: climate.turn_off
+    target:
+      entity_id: climate.living_room
+      device_id: 125c8100d8373afbfbce2b74aeb464fb
+    data: {}
+  mode: single
+- id: '1727040795761'
+  alias: Temp lower when home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: device_tracker.sm_s928u1
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 75
+      hvac_mode: heat_cool
+    target:
+      device_id: 125c8100d8373afbfbce2b74aeb464fb
+      entity_id: climate.living_room
+  mode: single
+- id: '1728104589860'
+  alias: Living room light on when present
+  description: ''
+  triggers:
+  - type: present
+    device_id: cfe6b6eb5fc217ee0654f4212a060e32
+    entity_id: 2af50fab961ef73f934b1aee080fa97c
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.living_room_light_2
+      device_id: dbb69fb62174e0c430c56ab411cce4aa
+  mode: single
+- id: '1728201844648'
+  alias: living room light off when not present
+  description: ''
+  triggers:
+  - type: not_present
+    device_id: cfe6b6eb5fc217ee0654f4212a060e32
+    entity_id: 2af50fab961ef73f934b1aee080fa97c
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id:
+      - ed69cdea469a4999d2319608179b051e
+      - dbb69fb62174e0c430c56ab411cce4aa
+  mode: single
+- id: '1759641554278'
+  alias: AI Camera → Directional PTZ + Notify Both Phones
+  description: LLM Vision compares frames, drives PTZ, and notifies two phones
+  triggers:
+  - type: motion
+    device_id: 2a53795fb7219a84d31d875fa2be7edc
+    entity_id: 0b4b61b6113cdb0b1a2f477922dd5164
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  conditions: []
+  actions:
+  - continue_on_error: true
+    data:
+      image_entity:
+      - '{{ cam }}'
+      remember: true
+      use_memory: true
+      include_filename: false
+      target_width: 1280
+      max_tokens: 300
+      generate_title: false
+      expose_images: true
+      provider: 01K6Q7EDZ7Q9VTF2VVJWH4409J
+      instructions: 'FRAME A: Note major objects and positions. Store for next frame.on
+        a separated line
+
+        describe what you see in 2 sentences. use a but of crude humor to make the
+
+        text feel human
+
+        '
+    response_variable: a
+    action: llmvision.image_analyzer
+  - delay: 00:00:01
+  - continue_on_error: true
+    data:
+      image_entity:
+      - '{{ cam }}'
+      remember: true
+      use_memory: true
+      include_filename: false
+      target_width: 1280
+      max_tokens: 200
+      generate_title: true
+      expose_images: true
+      provider: 01K6Q7EDZ7Q9VTF2VVJWH4409J
+      instructions: "FRAME B: Compare to the previous frame. State the dominant object's
+        motion with exactly one keyword: left / right / up / down / approaching /
+        leaving. Example: \"Person moving right.\" on a separated line describe what
+        you see in 2 sentences. use a but of crude humor to make the text feel human.
+        be funny with it \n"
+    response_variable: b
+    action: llmvision.image_analyzer
+  - data:
+      title: LLM Direction Debug
+      message: '{{ (b | default({}, true)) | tojson }}'
+    action: persistent_notification.create
+  - variables:
+      dir_text: "{{\n  (\n    (b.response_text | default('', true)) ~ ' ' ~\n    (b.title
+        | default('', true))\n  ) | lower\n}}"
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ '' right'' in ('' '' ~ dir_text) }}'
+      sequence:
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+          move_mode: RelativeMove
+          pan: 0.2
+          tilt: 0
+          zoom: 0
+          speed: 0.5
+        action: onvif.ptz
+      - delay: 00:00:01
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+        action: onvif.ptz_stop
+    - conditions:
+      - condition: template
+        value_template: '{{ '' left'' in ('' '' ~ dir_text) }}'
+      sequence:
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+          move_mode: RelativeMove
+          pan: -0.2
+          tilt: 0
+          zoom: 0
+          speed: 0.5
+        action: onvif.ptz
+      - delay: 00:00:01
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+        action: onvif.ptz_stop
+    - conditions:
+      - condition: template
+        value_template: '{{ '' up'' in ('' '' ~ dir_text) }}'
+      sequence:
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+          move_mode: RelativeMove
+          pan: 0
+          tilt: 0.15
+          zoom: 0
+          speed: 0.5
+        action: onvif.ptz
+      - delay: 00:00:01
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+        action: onvif.ptz_stop
+    - conditions:
+      - condition: template
+        value_template: '{{ '' down'' in ('' '' ~ dir_text) }}'
+      sequence:
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+          move_mode: RelativeMove
+          pan: 0
+          tilt: -0.15
+          zoom: 0
+          speed: 0.5
+        action: onvif.ptz
+      - delay: 00:00:01
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+        action: onvif.ptz_stop
+    - conditions:
+      - condition: template
+        value_template: '{{ ''approaching'' in dir_text or ''closer'' in dir_text
+          }}'
+      sequence:
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+          move_mode: RelativeMove
+          pan: 0
+          tilt: 0
+          zoom: 0.25
+          speed: 0.5
+        action: onvif.ptz
+      - delay: 00:00:01
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+        action: onvif.ptz_stop
+    - conditions:
+      - condition: template
+        value_template: '{{ ''leaving'' in dir_text or ''moving away'' in dir_text
+          or ''farther'' in dir_text }}'
+      sequence:
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+          move_mode: RelativeMove
+          pan: 0
+          tilt: 0
+          zoom: -0.2
+          speed: 0.5
+        action: onvif.ptz
+      - delay: 00:00:01
+      - data:
+          entity_id: '{{ cam }}'
+          profile: '{{ prof }}'
+        action: onvif.ptz_stop
+  - data:
+      title: '{{ (b.title | default(''AI Camera'', true)) | trim }}'
+      message: '{{ (b.response_text | default(''Motion detected'', true)) | trim }}'
+      data:
+        ttl: 0
+        priority: high
+        importance: high
+        channel: ai_camera
+        tag: ai_camera
+        clickAction: /lovelace/cameras
+    action: notify.mobile_app_sm_g975u
+  - data:
+      message: command
+      data:
+        command: toast
+        title: '{{ (b.title | default(''AI Camera'', true)) | trim }} — {{ (b.response_text
+          | default(''Motion detected'', true)) | trim }}'
+    action: notify.mobile_app_sm_g975u
+    enabled: false
+  - data:
+      title: '{{ (b.title | default(''AI Camera'', true)) | trim }}'
+      message: '{{ (b.response_text | default(''Motion detected'', true)) | trim }}'
+      data:
+        ttl: 0
+        priority: high
+        importance: high
+        channel: ai_camera
+        tag: ai_camera
+        clickAction: /lovelace/cameras
+    action: notify.mobile_app_sm_s928u1
+  - data:
+      message: command
+      data:
+        command: toast
+        title: '{{ (b.title | default(''AI Camera'', true)) | trim }} — {{ (b.response_text
+          | default(''Motion detected'', true)) | trim }}'
+    action: notify.mobile_app_sm_s928u1
+    enabled: false
+  mode: single
+  variables:
+    cam: camera.ip_camera_profile_000
+    prof: PROFILE_000
+- alias: Voice Test Alert
+  description: Created via local append
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.0b4b61b6113cdb0b1a2f477922dd5164
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_g975u
+    data:
+      title: AI Camera
+      message: Motion detected (local append)
+  - service: notify.mobile_app_sm_s928u1
+    data:
+      title: AI Camera
+      message: Motion detected (local append)
+  id: 50703679962343169c0bf27c572a4366
+- id: voice_test_alert
+  alias: Voice Test Alert
+  description: Created via local REST
+  triggers:
+  - entity_id: binary_sensor.0b4b61b6113cdb0b1a2f477922dd5164
+    platform: state
+    to: 'on'
+  conditions: []
+  actions:
+  - data:
+      message: Motion detected (local REST)
+      title: AI Camera
+    action: notify.mobile_app_sm_g975u
+  - data:
+      message: Motion detected (local REST)
+      title: AI Camera
+    action: notify.mobile_app_sm_s928u1
+  mode: single
+- id: '1759715528070'
+  alias: 2 AI Camera → Directional PTZ + Notify Both Phones
+  description: 2 LLM Vision compares frames, drives PTZ, and notifies two phones
+  triggers:
+  - entity_id: binary_sensor.ip_camera_cell_motion_detection
+    from: 'off'
+    to: 'on'
+    trigger: state
+  - event_type: onvif
+    event_data:
+      topic: RuleEngine/CellMotionDetector/Motion
+      state: 'true'
+    trigger: event
+  - trigger: state
+    entity_id:
+    - binary_sensor.ffmpeg_motion
+    from: 'off'
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.front_motion
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - action: persistent_notification.create
+    data:
+      title: AI Persona (resolved)
+      message: '{{ persona_append }}'
+  - continue_on_error: true
+    action: llmvision.image_analyzer
+    response_variable: a
+    data:
+      provider: 01K6Q7EDZ7Q9VTF2VVJWH4409J
+      image_entity:
+      - '{{ cam }}'
+      target_width: 1280
+      remember: false
+      use_memory: false
+      memory_key: '{{ ''autoA-'' ~ now().timestamp() }}'
+      include_filename: false
+      max_tokens: 255
+      message: '[TOK] PERSONA: {{ persona_append }} TASK: FRAME A — describe the scene
+        briefly. Note major objects and positions. OUTPUT: 1–2 concise sentences only,
+        in the selected persona style.
+
+        '
+      instructions: 'SYSTEM: Obey persona. profanity encouraged.
+
+        '
+  - delay: 00:00:01
+  - continue_on_error: true
+    action: llmvision.image_analyzer
+    response_variable: b
+    data:
+      provider: 01K6Q7EDZ7Q9VTF2VVJWH4409J
+      image_entity:
+      - '{{ cam }}'
+      target_width: 1280
+      remember: false
+      use_memory: false
+      memory_key: '{{ ''autoB-'' ~ now().timestamp() }}'
+      include_filename: false
+      max_tokens: 255
+      message: '[TOK] PERSONA: {{ persona_append }} TASK: Compare to the previous
+        frame. Then 1–2 concise sentences in the selected persona style.
+
+        '
+      instructions: 'SYSTEM: Obey persona. profanity encouraged.
+
+        '
+  - target:
+      entity_id: input_text.ai_camera_last_text
+    data:
+      value: "{{ (b.response_text | default('Motion detected', true))\n  | regex_replace('(?i)frame\\\\s*[ab]:?',
+        '') | trim }}\n"
+    action: input_text.set_value
+  - variables:
+      ts: '{{ now().timestamp() | int }}'
+      snap_file: /config/www/snapshots/ai_camera_{{ ts }}.jpg
+      snap_url_ext: '{{ base_url }}/local/snapshots/ai_camera_{{ ts }}.jpg'
+  - continue_on_error: true
+    data:
+      entity_id: '{{ cam }}'
+      filename: '{{ snap_file }}'
+    action: camera.snapshot
+  - continue_on_error: true
+    data:
+      entity_id: '{{ cam }}'
+      filename: /config/www/snapshots/ai_camera_latest.jpg
+    action: camera.snapshot
+  - target:
+      entity_id: input_text.ai_camera_last_image
+    data:
+      value: /local/snapshots/ai_camera_{{ ts }}.jpg
+    action: input_text.set_value
+  - action: persistent_notification.create
+    data:
+      title: LLM Direction Debug
+      message: '{{ (b | default({}, true)) | tojson }}'
+  - variables:
+      b_text: '{{ (b.response_text | default('''')) | lower }}'
+      first_line: '{{ b_text.split(''
+
+        '')[0] | trim }}'
+      dir: '{% set m = first_line | regex_findall(''^(?:\\[[^\\]]*\\]\\s*)?(left|right|up|down|approaching|leaving)\\b'')
+        %} {{ m[0] if m and m|length > 0 else '''' }}'
+  - action: notify.mobile_app_sm_g975u
+    data:
+      title: '{{ (b.title | default(''AI Camera'', true)) | trim }}'
+      message: '{{ states(''input_text.ai_camera_last_text'') }}'
+      data:
+        ttl: 0
+        priority: high
+        importance: high
+        channel: ai_camera
+        tag: ai_camera_{{ ts }}
+        image: '{{ snap_url_ext }}'
+        clickAction: /ai-camera/ai_camera
+        url: '{{ base_url }}/ai-camera/ai_camera'
+        push:
+          sound: default
+          badge: 1
+          interruption-level: time-sensitive
+  - action: notify.mobile_app_sm_s928u1
+    data:
+      title: '{{ (b.title | default(''AI Camera'', true)) | trim }}'
+      message: '{{ states(''input_text.ai_camera_last_text'') }}'
+      data:
+        ttl: 0
+        priority: high
+        importance: high
+        channel: ai_camera
+        tag: ai_camera_{{ ts }}
+        image: '{{ snap_url_ext }}'
+        clickAction: /ai-camera/ai_camera
+        url: '{{ base_url }}/ai-camera/ai_camera'
+        push:
+          sound: default
+          badge: 1
+          interruption-level: time-sensitive
+  mode: single
+  variables:
+    cam: camera.ip_camera_profile_000
+    prof: PROFILE_000
+    persona_raw: '{{ states(''input_text.ai_persona_prompt'') | default('''', true)
+      }}'
+    persona_clean: '{{ persona_raw | trim | regex_replace(''[\r\n]+'', '' '') | truncate(300,
+      True, '''') }}'
+    persona_append: "{% if persona_clean %}\n  ADOPT THIS PERSONA EXACTLY (it overrides
+      any prior memory/style): {{ persona_clean }}.\n  Keep responses within 1–2 sentences
+      unless told otherwise.\n{% else %}\n  Use a neutral, monotone, factual tone;
+      1–2 concise sentences;\n{% endif %}"
+    base_url: https://pvq6zf15x0giwsnqhhccw1beyhnzdazp.ui.nabu.casa
+- id: test_auto
+  alias: Test Auto
+  triggers:
+  - platform: time
+    at: '12:00:00'
+  conditions: []
+  actions:
+  - target:
+      entity_id: light.master_bedroom_light
+    action: light.turn_on
+  mode: single
+- id: '1759881349963'
+  alias: DEBUG — Dump ONVIF events
+  triggers:
+  - event_type: onvif
+    trigger: event
+  conditions: []
+  actions:
+  - action: persistent_notification.create
+    data:
+      title: ONVIF event
+      message: '{{ trigger | tojson }}'
+  mode: single
+- id: '1759886361264'
+  alias: DEBUG — Dump camera motion binary sensors
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.ip_camera_cell_motion_detection
+    - binary_sensor.ip_camera_motion_alarm
+    - binary_sensor.ip_camera_global_scene_change
+    - binary_sensor.ip_camera_human_shape_detection
+    - binary_sensor.ip_camera_field_detection
+    - binary_sensor.ip_camera_motion_region_detector
+    trigger: state
+  - type: motion
+    device_id: 2a53795fb7219a84d31d875fa2be7edc
+    entity_id: 0b4b61b6113cdb0b1a2f477922dd5164
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  conditions: []
+  actions:
+  - action: persistent_notification.create
+    data:
+      title: Binary sensor flip
+      message: '{{ trigger.to_state.entity_id }} → {{ trigger.to_state.state }}'
+  mode: parallel

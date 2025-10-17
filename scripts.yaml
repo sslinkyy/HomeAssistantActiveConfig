@@ -1,0 +1,144 @@
+create_motion_alert:
+  alias: Create motion alert automation (append + reload)
+  mode: single
+  fields:
+    alias:
+      description: New automation name
+      example: Voice Test Alert
+    description:
+      description: Optional description
+      example: Created via local append
+    motion_entity:
+      description: Motion sensor entity_id
+      example: binary_sensor.0b4b61b6113cdb0b1a2f477922dd5164
+    notify_title:
+      description: Push title
+      example: AI Camera
+    notify_message:
+      description: Push message
+      example: Motion detected
+    mode:
+      description: Automation mode
+      example: single
+  sequence:
+  - service: shell_command.append_motion_automation
+    data:
+      alias: '{{ alias }}'
+      description: '{{ description }}'
+      motion_entity: '{{ motion_entity }}'
+      notify_title: '{{ notify_title }}'
+      notify_message: '{{ notify_message }}'
+      mode: '{{ mode | default(''single'') }}'
+  - delay:
+      seconds: 1
+  - service: automation.reload
+send_ai_prompt:
+  alias: Send AI Prompt
+  mode: single
+  sequence:
+  - data:
+      agent_id: conversation.google_ai_conversation
+      text: '{{ (states(''input_text.ai_prefix'') ~ '' '' ~ states(''input_text.ai_prompt''))
+        | trim }}'
+    response_variable: conv
+    action: conversation.process
+  - target:
+      entity_id: input_text.ai_response
+    data:
+      value: '{% set raw = conv.response.speech.plain.speech if conv and conv.response
+        and conv.response.speech and conv.response.speech.plain and conv.response.speech.plain.speech
+        is string else conv|tojson %} {{ raw }}'
+    action: input_text.set_value
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{% set raw = conv.response.speech.plain.speech if conv and
+          conv.response and conv.response.speech and conv.response.speech.plain and
+          conv.response.speech.plain.speech is string else '''' %} {{ raw|trim is
+          string and raw|trim|first == ''{'' }}'
+      sequence:
+      - variables:
+          raw: '{{ conv.response.speech.plain.speech | trim }}'
+          obj: '{{ (conv.response.speech.plain.speech | trim) | from_json }}'
+      - data:
+          id: "{{ obj.id if obj is mapping and obj.id is defined and obj.id|string|length>0\n
+            \  else 'auto_' ~ now().timestamp()|int }}"
+          payload: '{{ raw }}'
+        action: rest_command.ha_create_automation
+      - target:
+          entity_id: input_text.ai_response
+        data:
+          value: '{{ ''Created/updated automation: '' ~ (obj.alias if obj.alias is
+            defined else obj.id) }}'
+        action: input_text.set_value
+apply_ai_automation:
+  alias: Apply AI Automation (from JSON)
+  mode: single
+  fields:
+    response_text:
+      description: Raw AI response expected to contain JSON for a new automation
+      example: '{"id":"auto_one","alias":"Demo","trigger":[...],"action":[...],"mode":"single"}
+
+        '
+  sequence:
+  - variables:
+      payload: '{{ response_text | trim }}'
+  - choose:
+    - conditions: '{{ payload|length > 0 and payload[0] == ''{'' }}'
+      sequence:
+      - service: rest_command.ha_create_automation
+        data:
+          payload: '{{ payload }}'
+    - conditions: []
+      sequence:
+      - service: persistent_notification.create
+        data:
+          title: AI Automation – Invalid payload
+          message: 'Expected JSON starting with "{". Got: {{ payload[:400] }}'
+reset_ai_helpers:
+  alias: Reset AI Helpers
+  mode: single
+  sequence:
+  - target:
+      entity_id: input_text.ai_prompt
+    data:
+      value: ''
+    action: input_text.set_value
+  - target:
+      entity_id: input_text.ai_response
+    data:
+      value: ''
+    action: input_text.set_value
+  description: ''
+set_ai_prefix_strict:
+  alias: Set AI Prefix (Strict)
+  mode: single
+  sequence:
+  - target:
+      entity_id: input_text.ai_prefix
+    data:
+      value: 'You are “Automation Builder”. • If the user asks to CREATE or UPDATE
+        an automation, reply ONLY with a single JSON object that Home Assistant can
+        POST to /api/config/automation/config/<id>. • Use valid Home Assistant JSON
+        for triggers/conditions/actions. • Include at least one trigger. • Use entity_ids
+        exactly as the user wrote (do not invent). • If you don’t have enough info,
+        ask ONE short clarifying question. • If the user’s message is NOT about Home
+        Assistant, just reply: {"note":"not-automation"}.'
+    action: input_text.set_value
+  description: ''
+set_ai_prefix:
+  alias: Set AI Prefix
+  mode: single
+  sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.ai_prefix
+    data:
+      value: "You are “Automation Builder” for Home Assistant. Return **only** a single
+        JSON object for a Home Assistant automation that can be sent to POST /api/config/automation/config/<id>.
+        No prose.\nRules: - You MAY use any valid triggers, including time:\n  {\"platform\":\"time\",\"at\":\"HH:MM:SS\"}\n-
+        Use real entity_ids exactly as the user writes them. - Schema: {\"id\":\"...\",\"alias\":\"...\",\"trigger\":[...],\n
+        \          \"condition\":[],\"action\":[...],\"mode\":\"single\"}\n- For actions,
+        use {\"service\":\"domain.service\",\n                    \"target\":{\"entity_id\":\"...\"}}\n-
+        Never include comments or extra keys. If you do NOT have enough info, reply
+        with: ASK: <your clarifying question>"

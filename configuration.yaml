@@ -1,0 +1,88 @@
+# (keep your existing top-of-file items)
+default_config:
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+input_select:
+  minimalist_ui_switch:
+    name: Select popup/view
+    options:
+      - light 1
+      - light 2
+      - mediaplayer 1
+      - mediaplayer 2
+      - climate 1
+      - climate 2
+      - power 1
+      - power 2
+      - livingroom
+
+binary_sensor:
+  - platform: ffmpeg_motion
+    input: FFMPEG_SUPPORTED_INPUT
+
+homeassistant:
+  packages: !include_dir_named packages
+
+# ---- REST commands (LOCAL HTTP) ----
+rest_command:
+  ha_api_ping:
+    url: "http://homeassistant:8123/api/"
+    method: GET
+    headers:
+      Authorization: !secret ha_api_bearer
+      accept: "application/json"
+
+  ha_create_automation:
+    url: "http://homeassistant:8123/api/config/automation/config/{{ id }}"
+    method: POST
+    headers:
+      Authorization: !secret ha_api_bearer
+      content-type: "application/json"
+    payload: "{{ payload }}"
+
+  create_motion_alert:
+    url: "http://homeassistant:8123/api/config/automation/config/{{ id }}"
+    method: POST
+    headers:
+      Authorization: !secret ha_api_bearer
+      content-type: "application/json"
+    payload: >-
+      {{
+        dict(
+          alias=alias,
+          description=description,
+          trigger=[{'platform':'state','entity_id': motion_entity, 'to':'on'}],
+          condition=[],
+          action=[
+            {'service':'notify.mobile_app_sm_g975u','data':{'title': notify_title, 'message': notify_message}},
+            {'service':'notify.mobile_app_sm_s928u1','data':{'title': notify_title, 'message': notify_message}}
+          ],
+          mode=mode
+        ) | tojson
+      }}
+shell_command:
+  ensure_snapshots_dir: "mkdir -p /config/www/snapshots"
+  append_motion_automation: >-
+    bash /config/append_auto.sh
+    "{{ alias }}"
+    "{{ description | default('Created via voice') }}"
+    "{{ motion_entity }}"
+    "{{ notify_title }}"
+    "{{ notify_message }}"
+    "{{ mode | default('single') }}"
+input_text:
+  ai_prompt:
+    name: AI Prompt
+    max: 255
+  ai_response:
+    name: AI Response
+    max: 255
+  ai_prefix:
+    name: AI Prefix
+    max: 255

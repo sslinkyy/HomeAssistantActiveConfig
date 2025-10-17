@@ -1,0 +1,69 @@
+homeassistant: true
+advanced:
+  network_key:
+    - 154
+    - 70
+    - 246
+    - 89
+    - 100
+    - 156
+    - 43
+    - 245
+    - 107
+    - 130
+    - 170
+    - 151
+    - 55
+    - 175
+    - 255
+    - 157
+  pan_id: 56482
+  ext_pan_id:
+    - 182
+    - 180
+    - 184
+    - 139
+    - 207
+    - 4
+    - 155
+    - 184
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false
+mqtt:
+  server: mqtt://core-mosquitto:1883
+  user: addons
+  password: theZ7Yohl3reeyaiGuthou9eemuth6uhoosh0iepheeYui6kai5yeetafo9zaeX7
+frontend:
+  port: 8099
+serial:
+  port: >-
+    /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20240218164929-if00
+  adapter: ezsp
+device_options:
+  legacy: false
+permit_join: true
+devices:
+  '0xa4c138b8681bb29a':
+    friendly_name: Living Room Light
+    homeassistant:
+      name: Living Room Light
+    optimistic: true
+  '0xa4c138e358edf3d8':
+    friendly_name: Master Bedroom Light
+  '0xa4c138752bfabc4a':
+    friendly_name: Presence
+  '0xa4c1386c7700a65a':
+    friendly_name: 2nd living Room light
+  '0xa4c1388d2043c017':
+    friendly_name: Chris bedroom light
+  '0xa4c13831ba93a85d':
+    friendly_name: Emily bedroom light
+  '0xa4c138d39d4b0b1b':
+    friendly_name: Master Bathroom Light
+  '0xa4c138458f6ac92a':
+    friendly_name: Spare room light
+  '0xa4c13830142db211':
+    friendly_name: Outside Motion Light
+external_converters:
+  - ext_converter.js
