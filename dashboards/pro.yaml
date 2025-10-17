@@ -34,6 +34,36 @@ views:
             image: /local/snapshots/ai_camera_latest.jpg
             camera_view: auto
 
+      - type: grid
+        cards:
+          - type: tile
+            entity: binary_sensor.presence
+            name: Living Presence
+          - type: tile
+            entity: light.living_room_light_2
+            name: LR Light 2
+          - type: tile
+            entity: light.master_bedroom_light
+            name: Master Light
+          - type: tile
+            entity: light.chris_bedroom_light
+            name: Chris Light
+          - type: tile
+            entity: light.emily_bedroom_light
+            name: Emily Light
+
+      - type: grid
+        cards:
+          - type: tile
+            entity: media_player.samsung_6_series_55
+            name: Samsung TV
+          - type: tile
+            entity: media_player.onn_4k_streaming_box
+            name: Onn Box
+          - type: tile
+            entity: media_player.spotify_ayorba_1986
+            name: Spotify
+
       # Now Playing row removed for stability; can be re-added later with verified entities
 
   - title: Cameras
