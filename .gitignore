@@ -24,3 +24,12 @@ secrets.yaml
 media/
 tmp/
 www/generated/
+www/snapshots/
+
+# Zigbee2MQTT runtime/state
+zigbee2mqtt/database.db*
+zigbee2mqtt/*.db
+zigbee2mqtt/state.json
+zigbee2mqtt/coordinator_backup.json
+zigbee2mqtt/configuration_backup_*.yaml
+zigbee2mqtt/logs/

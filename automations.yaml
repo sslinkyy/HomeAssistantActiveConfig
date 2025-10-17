@@ -83,7 +83,14 @@
       hours: 0
       minutes: 0
       seconds: 1
-  conditions: []
+  conditions:
+  - condition: template
+    value_template: >-
+      {% set lt = state_attr(this.entity_id, 'last_triggered') %}
+      {{ lt is none or (as_timestamp(now()) - as_timestamp(lt)) > 10 }}
+  - condition: template
+    value_template: >-
+      {{ states(cam) not in ['unavailable','unknown','none'] }}
   actions:
   - continue_on_error: true
     data:
