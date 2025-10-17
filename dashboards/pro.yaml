@@ -69,9 +69,11 @@ views:
         cards:
           - type: tile
             entity: input_text.ai_camera_last_text
-            name: AI Camera
+            name: Driveway Camera
           - type: picture-entity
             entity: camera.ip_camera_profile_000
+            name: Driveway Camera
+            show_state: false
             image: /local/snapshots/ai_camera_latest.jpg
             camera_view: auto
 
@@ -85,6 +87,7 @@ views:
         cards:
           - type: picture-entity
             entity: camera.ip_camera_profile_000
+            name: Driveway Camera
             camera_view: live
             show_state: false
             tap_action: more-info
