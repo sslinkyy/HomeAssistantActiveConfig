@@ -42,6 +42,12 @@ views:
               action: navigate
               navigation_path: /pro/cameras
           - type: tile
+            name: Living Room
+            icon: mdi:sofa
+            tap_action:
+              action: navigate
+              navigation_path: /pro/living_room
+          - type: tile
             name: Master Bedroom
             icon: mdi:bed-king
             tap_action:
@@ -112,6 +118,7 @@ views:
               - light.chris_bedroom_light
               - light.emily_bedroom_light
               - light.0xa4c138e358edf3d8
+              - light.master_bathroom_light
 
   - title: Climate
     icon: mdi:thermostat
@@ -180,6 +187,28 @@ views:
             entity: light.emily_bedroom_light
             name: Ceiling Light
 
+  - title: Living Room
+    icon: mdi:sofa
+    type: sections
+    path: living_room
+    subview: true
+    sections:
+      - type: grid
+        cards:
+          - type: conditional
+            conditions:
+              - entity: light.living_room_light_1
+                state_not: unavailable
+            card:
+              type: tile
+              entity: light.living_room_light_1
+              name: Ceiling Light 1
+          - type: tile
+            entity: light.living_room_light_2
+            name: Ceiling Light 2
+          - type: tile
+            entity: binary_sensor.presence
+            name: Presence
   - title: Tony's Bedroom
     icon: mdi:bed
     type: sections
