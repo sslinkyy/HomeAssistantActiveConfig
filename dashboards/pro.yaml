@@ -92,6 +92,8 @@ views:
             entities:
               - light.living_room_light_2
               - light.master_bedroom_light
+              - light.chris_bedroom_light
+              - light.emily_bedroom_light
 
   - title: Climate
     icon: mdi:thermostat
