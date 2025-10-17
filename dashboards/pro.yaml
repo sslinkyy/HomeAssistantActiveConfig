@@ -18,6 +18,12 @@ views:
                 content: "People: {{ states('sensor.people_home') }}"
               - type: weather
                 entity: weather.home
+              - type: entity
+                entity: person.emily
+              - type: entity
+                entity: person.chris
+              - type: entity
+                entity: person.jolene
           - type: tile
             entity: climate.living_room
             name: Climate
@@ -41,6 +47,12 @@ views:
             tap_action:
               action: navigate
               navigation_path: /pro/cameras
+          - type: tile
+            name: Driveway
+            icon: mdi:car-estate
+            tap_action:
+              action: navigate
+              navigation_path: /pro/driveway
           - type: tile
             name: Living Room
             icon: mdi:sofa
@@ -209,6 +221,132 @@ views:
           - type: tile
             entity: binary_sensor.presence
             name: Presence
+          - type: conditional
+            conditions:
+              - entity: number.presence_sensitivity
+                state_not: unavailable
+            card:
+              type: tile
+              entity: number.presence_sensitivity
+              name: Presence Sensitivity
+          - type: conditional
+            conditions:
+              - entity: number.presence_timeout
+                state_not: unavailable
+            card:
+              type: tile
+              entity: number.presence_timeout
+              name: Presence Timeout
+
+  - title: Driveway
+    icon: mdi:car-estate
+    type: sections
+    path: driveway
+    subview: true
+    sections:
+      - type: grid
+        cards:
+          - type: picture-entity
+            entity: camera.ip_camera_profile_000
+            name: Driveway Camera
+            camera_view: live
+            show_state: false
+            tap_action: more-info
+          - type: grid
+            cards:
+              - type: button
+                name: Left
+                icon: mdi:arrow-left
+                tap_action:
+                  action: call-service
+                  service: onvif.ptz
+                  data:
+                    entity_id: camera.ip_camera_profile_000
+                    profile: PROFILE_000
+                    move_mode: RelativeMove
+                    pan: -0.2
+                    tilt: 0
+                    zoom: 0
+                    speed: 0.5
+              - type: button
+                name: Right
+                icon: mdi:arrow-right
+                tap_action:
+                  action: call-service
+                  service: onvif.ptz
+                  data:
+                    entity_id: camera.ip_camera_profile_000
+                    profile: PROFILE_000
+                    move_mode: RelativeMove
+                    pan: 0.2
+                    tilt: 0
+                    zoom: 0
+                    speed: 0.5
+              - type: button
+                name: Up
+                icon: mdi:arrow-up
+                tap_action:
+                  action: call-service
+                  service: onvif.ptz
+                  data:
+                    entity_id: camera.ip_camera_profile_000
+                    profile: PROFILE_000
+                    move_mode: RelativeMove
+                    pan: 0
+                    tilt: 0.15
+                    zoom: 0
+                    speed: 0.5
+              - type: button
+                name: Down
+                icon: mdi:arrow-down
+                tap_action:
+                  action: call-service
+                  service: onvif.ptz
+                  data:
+                    entity_id: camera.ip_camera_profile_000
+                    profile: PROFILE_000
+                    move_mode: RelativeMove
+                    pan: 0
+                    tilt: -0.15
+                    zoom: 0
+                    speed: 0.5
+              - type: button
+                name: Zoom In
+                icon: mdi:magnify-plus
+                tap_action:
+                  action: call-service
+                  service: onvif.ptz
+                  data:
+                    entity_id: camera.ip_camera_profile_000
+                    profile: PROFILE_000
+                    move_mode: RelativeMove
+                    pan: 0
+                    tilt: 0
+                    zoom: 0.25
+                    speed: 0.5
+              - type: button
+                name: Zoom Out
+                icon: mdi:magnify-minus
+                tap_action:
+                  action: call-service
+                  service: onvif.ptz
+                  data:
+                    entity_id: camera.ip_camera_profile_000
+                    profile: PROFILE_000
+                    move_mode: RelativeMove
+                    pan: 0
+                    tilt: 0
+                    zoom: -0.2
+                    speed: 0.5
+              - type: button
+                name: Stop
+                icon: mdi:stop
+                tap_action:
+                  action: call-service
+                  service: onvif.ptz_stop
+                  data:
+                    entity_id: camera.ip_camera_profile_000
+                    profile: PROFILE_000
   - title: Tony's Bedroom
     icon: mdi:bed
     type: sections
