@@ -220,10 +220,9 @@ views:
           - type: tile
             entity: climate.living_room
             name: Living Room
-          
-              - type: tile
-                entity: sensor.dashboard_version
-                name: Pro Ver
+          - type: tile
+            entity: sensor.dashboard_version
+            name: Pro Ver
           - type: custom:weather-chart-card
             entity: weather.home
             show_main: true
