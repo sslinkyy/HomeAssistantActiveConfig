@@ -110,6 +110,28 @@ reset_ai_helpers:
       value: ''
     action: input_text.set_value
   description: ''
+all_lights_off:
+  alias: All Lights Off
+  mode: single
+  sequence:
+  - service: light.turn_off
+    target:
+      entity_id: all
+  description: Turn off all lights in the house
+restart_zigbee2mqtt:
+  alias: Restart Zigbee2MQTT Add-on
+  mode: single
+  sequence:
+  - service: hassio.addon_restart
+    data:
+      addon: 45df7312_zigbee2mqtt
+vacuum_return_to_base:
+  alias: Vacuum Return to Base
+  mode: single
+  sequence:
+  - service: vacuum.return_to_base
+    target:
+      entity_id: vacuum.mo
 set_ai_prefix_strict:
   alias: Set AI Prefix (Strict)
   mode: single

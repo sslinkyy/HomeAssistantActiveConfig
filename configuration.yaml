@@ -95,4 +95,9 @@ lovelace:
       title: Pro
       icon: mdi:view-dashboard
       show_in_sidebar: true
-
+# Debug/version sensor (reads last line of /config/.dashboard_version)
+sensor:
+  - platform: file
+    name: Dashboard Version
+    file_path: /config/.dashboard_version
+    value_template: '{{ value | trim }}'

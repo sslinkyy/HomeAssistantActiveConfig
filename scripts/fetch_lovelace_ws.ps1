@@ -56,28 +56,34 @@ function Req($type, $extra) {
   return $resp
 }
 
-# Default dashboard config
+# Default dashboard config (wrap in storage schema)
 $resp = Req 'lovelace/config' $null
 if ($resp.success -and $resp.result) {
-  ($resp.result | ConvertTo-Json -Depth 100) | Out-File -FilePath ".storage/lovelace" -Encoding utf8
+  $store = @{ version = 1; minor_version = 1; key = 'lovelace'; data = $resp.result }
+  ($store | ConvertTo-Json -Depth 100) | Out-File -FilePath ".storage/lovelace" -Encoding utf8
 } else { Write-Warning "lovelace/config failed: $($resp | ConvertTo-Json -Depth 5)" }
 
-# Resources
+# Resources (wrap)
 $resp = Req 'lovelace/resources' $null
 if ($resp.success -and $resp.result) {
-  ($resp.result | ConvertTo-Json -Depth 100) | Out-File -FilePath ".storage/lovelace_resources" -Encoding utf8
+  $store = @{ version = 1; minor_version = 1; key = 'lovelace.resources'; data = $resp.result }
+  ($store | ConvertTo-Json -Depth 100) | Out-File -FilePath ".storage/lovelace_resources" -Encoding utf8
 } else { Write-Warning "lovelace/resources failed: $($resp | ConvertTo-Json -Depth 5)" }
 
-# Dashboards list
+# Dashboards list (wrap) and per-dashboard configs (wrap)
 $resp = Req 'lovelace/dashboards/list' $null
 if ($resp.success -and $resp.result) {
   $dash = $resp.result
-  ($dash | ConvertTo-Json -Depth 100) | Out-File -FilePath ".storage/lovelace_dashboards" -Encoding utf8
+  $store = @{ version = 1; minor_version = 1; key = 'lovelace_dashboards'; data = $dash }
+  ($store | ConvertTo-Json -Depth 100) | Out-File -FilePath ".storage/lovelace_dashboards" -Encoding utf8
   foreach ($d in $dash) {
     if ($d.url_path) {
       $cfg = Req 'lovelace/config' @{ url_path = $d.url_path }
       if ($cfg.success -and $cfg.result) {
-        ($cfg.result | ConvertTo-Json -Depth 100) | Out-File -FilePath (".storage/lovelace.{0}" -f $d.id) -Encoding utf8
+        $key = "lovelace.{0}" -f $d.id
+        $out = ".storage/lovelace.{0}" -f $d.id
+        $storeCfg = @{ version = 1; minor_version = 1; key = $key; data = $cfg.result }
+        ($storeCfg | ConvertTo-Json -Depth 100) | Out-File -FilePath $out -Encoding utf8
       }
     }
   }
