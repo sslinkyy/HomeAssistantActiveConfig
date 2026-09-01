@@ -2,7 +2,9 @@ mqtt:
   enabled: true
   host: core-mosquitto        # Mosquitto add-on hostname inside HA
   port: 1883
-  # FRIGATE_MQTT_USER and FRIGATE_MQTT_PASSWORD: set only in the Frigate add-on env / HA secrets, never in git.
+  # Copy secrets.yaml.example → secrets.yaml on the HA box (gitignored). Set the same values as
+  # Frigate add-on env vars FRIGATE_MQTT_USER / FRIGATE_MQTT_PASSWORD. Never commit secrets.yaml.
+  # Frigate config does not support HA !secret tags; use {FRIGATE_*} placeholders below.
   user: '{FRIGATE_MQTT_USER}'
   password: '{FRIGATE_MQTT_PASSWORD}'
   topic_prefix: frigate
@@ -17,7 +19,7 @@ cameras:
     enabled: true
     ffmpeg:
       inputs:
-        # FRIGATE_RTSP_PASSWORD: set only in the Frigate add-on env / HA secrets, never in git.
+        # Same secrets.yaml + FRIGATE_RTSP_PASSWORD add-on env var (see MQTT comment above; no !secret here).
         - path: rtsp://admin:{FRIGATE_RTSP_PASSWORD}@192.168.1.171:10554/tcp/av0_0
           roles: [detect, record]
           input_args: -rtsp_transport tcp
