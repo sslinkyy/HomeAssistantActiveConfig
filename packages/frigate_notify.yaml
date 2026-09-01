@@ -1,0 +1,76 @@
+automation:
+  - id: frigate_eversecu1_person_car_notify
+    alias: "Frigate eversecu1: person/car notify"
+    description: >-
+      Notify both Companion phones on person or car Frigate review events for eversecu1
+      (MQTT frigate/reviews). Two-way talk not enabled.
+    mode: single
+    max_exceeded: silent
+    trigger:
+      - trigger: mqtt
+        topic: frigate/reviews
+        payload: new
+        value_template: "{{ value_json.type }}"
+        id: new
+      - trigger: mqtt
+        topic: frigate/reviews
+        payload: end
+        value_template: "{{ value_json.type }}"
+        id: end
+    variables:
+      event: "{{ trigger.payload_json }}"
+      camera: "{{ event.after.camera }}"
+      objects: "{{ event.after.data.objects | default([]) }}"
+      detections: "{{ event.after.data.detections | default([]) }}"
+      detection_id: "{{ detections[0] if detections | length > 0 else '' }}"
+      matched_labels: "{{ objects | select('in', ['person', 'car']) | list }}"
+    condition:
+      - condition: template
+        value_template: "{{ camera == 'eversecu1' }}"
+      - condition: template
+        value_template: "{{ matched_labels | length > 0 }}"
+      - condition: template
+        value_template: >
+          {% set last = state_attr('automation.frigate_eversecu1_person_car_notify', 'last_triggered') %}
+          {{ last is none or (now().timestamp() - last.timestamp()) > 90 }}
+    action:
+      - variables:
+          notify_title: "Frigate: eversecu1"
+          notify_message: >-
+            {{ matched_labels | join(', ') | title }} detected ({{ trigger.id }})
+          snapshot_path: >-
+            {% if detection_id %}
+            /api/frigate/notifications/{{ detection_id }}/snapshot.jpg
+            {% endif %}
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: "{{ snapshot_path | length > 0 }}"
+            sequence:
+              - action: notify.mobile_app_sm_g975u
+                data:
+                  title: "{{ notify_title }}"
+                  message: "{{ notify_message }}"
+                  data:
+                    image: "{{ snapshot_path }}"
+                    tag: frigate_eversecu1
+              - action: notify.mobile_app_sm_s928u1
+                data:
+                  title: "{{ notify_title }}"
+                  message: "{{ notify_message }}"
+                  data:
+                    image: "{{ snapshot_path }}"
+                    tag: frigate_eversecu1
+        default:
+          - action: notify.mobile_app_sm_g975u
+            data:
+              title: "{{ notify_title }}"
+              message: "{{ notify_message }}"
+              data:
+                tag: frigate_eversecu1
+          - action: notify.mobile_app_sm_s928u1
+            data:
+              title: "{{ notify_title }}"
+              message: "{{ notify_message }}"
+              data:
+                tag: frigate_eversecu1
