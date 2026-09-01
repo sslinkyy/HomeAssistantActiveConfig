@@ -14,10 +14,17 @@ go2rtc:
   streams:
     eversecu1:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@192.168.1.171:10554/tcp/av0_0
-  # Two-way talk NOT enabled (unknown if this Eversecu supports it). Do NOT use Hikvision isapi://.
-  # Future probe only — keep commented/disabled:
-  # - O-KAM proprietary LAN UDP talk path (vendor-specific)
-  # - dvrip://USER:PASS@192.168.1.171:34567?backchannel=1
+  # --- Two-way audio probe notes (COMMENTED / NOT ENABLED — do not claim talk works) ---
+  # Eversecu eversecu1 facts (CEO):
+  # - RTSP :10554 is video only for ingest; mic audio may ride on the stream. Speaker/talk is
+  #   O-KAM proprietary LAN UDP, not RTSP. Do NOT use Hikvision isapi:// (wrong vendor).
+  # - ONVIF may be http://192.168.1.171:10080/onvif/device_service — PTZ often works; talk often does not.
+  # - Probe from the HA LAN only. Newer firmware can fail with "unexpected end of JSON input".
+  # Future go2rtc talk probe (keep disabled until tested on LAN; set FRIGATE_DVRIP_PASSWORD in add-on env):
+  #   streams:
+  #     eversecu1_talk:
+  #       - dvrip://admin:{FRIGATE_DVRIP_PASSWORD}@192.168.1.171:34567?backchannel=1
+  # O-KAM LAN UDP talk path is vendor-specific and not configured here.
 
 live:
   streams:
