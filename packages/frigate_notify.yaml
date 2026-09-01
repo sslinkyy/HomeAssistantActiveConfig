@@ -1,9 +1,11 @@
+# Driveway zone is a placeholder — person/car MQTT would fire whole-frame until the zone is drawn in Frigate UI; leave disabled until Anthony wants the alerts.
 automation:
   - id: frigate_eversecu1_person_car_notify
     alias: "Frigate eversecu1: person/car notify"
     description: >-
       Notify both Companion phones on person or car Frigate review events for eversecu1
       (MQTT frigate/reviews). Two-way talk not enabled.
+    enabled: false
     mode: single
     max_exceeded: silent
     trigger:
